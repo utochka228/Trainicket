@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "key": "skip_step",
+      "value": "Пропустить шаг"
+    },
+    {
+      "key": "continue_button",
+      "value": "Продолжить"
+    },
+    {
+      "key": "sendcode_button",
+      "value": "Отправить код"
+    },
+    {
+      "key": "phonefield_lable",
+      "value": "Введите номер телефона"
+    }
+  ]
+}

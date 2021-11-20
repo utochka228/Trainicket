@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "key": "skip_step",
+      "value": "Skip step"
+    },
+    {
+      "key": "continue_button",
+      "value": "Continue"
+    },
+    {
+      "key": "sendcode_button",
+      "value": "Send code"
+    },
+    {
+      "key": "phonefield_lable",
+      "value": "Input phone number"
+    }
+  ]
+}
+

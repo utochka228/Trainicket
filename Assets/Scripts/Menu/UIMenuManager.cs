@@ -9,7 +9,8 @@ public class UIMenuManager : MonoBehaviour
 
     public Stack<Menu> menuStack = new Stack<Menu>();
     public static UIMenuManager Instance { get; set; }
-
+    public AuthMenu authMenu;
+    public SearchMenu searchMenu;
     void Awake()
     {
         if (Instance == null)
@@ -20,11 +21,8 @@ public class UIMenuManager : MonoBehaviour
         else if (Instance != this)
             Destroy(gameObject); // On reload, singleton already set, so destroy duplicate.
     }
-
-    public static void OnAddProduct()
-    {
-        onProductAdded?.Invoke();
-        Debug.Log("PRODUCT ADDED!");
+    private void Start() {
+        AuthMenu.Show();
     }
 
     public void CreateInstance<T>() where T : Menu
@@ -120,6 +118,9 @@ public class UIMenuManager : MonoBehaviour
         {
             CloseTopMenu();
         }
+    }
+    public void ChangeLocalization(string localization) {
+        LocalizationManager.instance.setLocalization(localization);
     }
     private void Update()
     {

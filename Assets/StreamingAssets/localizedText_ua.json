@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "key": "skip_step",
+      "value": "Пропустити крок"
+    },
+    {
+      "key": "continue_button",
+      "value": "Продовжити"
+    },
+    {
+      "key": "sendcode_button",
+      "value": "Відправити код"
+    },
+    {
+      "key": "phonefield_lable",
+      "value": "Введіть номер телефону"
+    }
+  ]
+}

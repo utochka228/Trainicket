@@ -11,6 +11,9 @@ public class UIMenuManager : MonoBehaviour
     public static UIMenuManager Instance { get; set; }
     public AuthMenu authMenu;
     public SearchMenu searchMenu;
+    public LoadingMenu loadingMenu;
+    public RegisterMenu registerMenu;
+    public string accesstoken;
     void Awake()
     {
         if (Instance == null)
@@ -22,6 +25,8 @@ public class UIMenuManager : MonoBehaviour
             Destroy(gameObject); // On reload, singleton already set, so destroy duplicate.
     }
     private void Start() {
+        Application.targetFrameRate = 60;
+
         AuthMenu.Show();
     }
 

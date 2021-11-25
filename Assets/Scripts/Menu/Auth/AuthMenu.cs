@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Networking;
+using UnityEngine.UI;
 using static JSONStorage;
 
 public class AuthMenu : MenuItem<AuthMenu>
 {
     [SerializeField] GameObject sendCodeBtn;
-    [SerializeField] GameObject continueBtn;
-    [SerializeField] TMP_Dropdown language;
+    [SerializeField] Button continueBtn;
+    [SerializeField] GameObject phoneBlock;
+    [SerializeField] GameObject pincodeBlock;
     [SerializeField] TMP_InputField phoneField;
+    [SerializeField] TMP_InputField[] pinFields;
+
+    string inputPhoneNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,47 +21,60 @@ public class AuthMenu : MenuItem<AuthMenu>
     public void SkipAuthStep() {
         SearchMenu.Show();
     }
-    public void ChangeLocalization() {
-        switch (language.value) {
-            case 0:
-                Debug.Log("Localized to English.");
-                UIMenuManager.Instance.ChangeLocalization("localizedText_en");
-                break;
-            case 1:
-                Debug.Log("Localized to Ukrainian.");
-                UIMenuManager.Instance.ChangeLocalization("localizedText_ua");
-                break;
-            case 2:
-                Debug.Log("Localized to Russian.");
-                UIMenuManager.Instance.ChangeLocalization("localizedText_ru");
-                break;
-            default:
-                break;
-        }
-    }
+    
     public void SendPhone() {
+        inputPhoneNumber = phoneField.text;
         string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\"";
         var body = @"{" + "\n" + phoneNumber + "\n" +
 @"}";
-        StartCoroutine(CallLogin("http://18.117.102.247:5000/api/auth/phone/send", body));
+        StartCoroutine(RestAPI.PostRequest("http://18.117.102.247:5000/api/auth/phone/send", body, ShowPinCodeField, null));
     }
     string responsedCode;
-    public IEnumerator CallLogin(string url, string logindataJsonString) {
-        var request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(logindataJsonString);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-        yield return request.SendWebRequest();
-
-        if (request.error != null) {
-            Debug.Log("Erro: " + request.error);
-        } else {
-            Debug.Log("All OK");
-            Debug.Log("Status Code: " + request.responseCode);
-            Debug.Log(request.downloadHandler.text);
-            var response = JsonUtility.FromJson<CodeResponse>(request.downloadHandler.text);
-        }
-
+    
+    #region PinCode
+    void ShowPinCodeField(string json, long responseCode) {
+        phoneBlock.SetActive(false);
+        sendCodeBtn.SetActive(false);
+        continueBtn.gameObject.SetActive(true);
+        continueBtn.interactable = false;
+        pincodeBlock.SetActive(true);
     }
+    int pinCountEntered;
+    string maskedCode = "xxxx";
+    public void OnPinEntered(int index) {
+        var pinField = pinFields[index];
+        if (string.IsNullOrEmpty(pinField.text)) {
+            if (maskedCode[index] != 'x')
+                pinCountEntered--;
+            maskedCode = Utils.ReplaceSymbol(maskedCode, index, 'x');
+            if (pinCountEntered < 4)
+                continueBtn.interactable = false;
+            return;
+        }
+        if (maskedCode[index] != 'x')
+            return;
+        maskedCode = Utils.ReplaceSymbol(maskedCode, index, pinField.text[0]);
+        pinCountEntered++;
+        if(pinCountEntered == 4)
+            continueBtn.interactable = true;
+    }
+    public void SendEnteredCode() {
+        string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\",";
+        var body = @"{" + "\n" + phoneNumber + "\n" + "\"code\":" + int.Parse(maskedCode) +
+@"}";
+        StartCoroutine(RestAPI.PostRequest("http://18.117.102.247:5000/api/auth/phone/check", body, CheckResponsedCode, null));
+    }
+    void CheckResponsedCode(string json, long responseCode) {
+        //Bad request
+        if(responseCode == 400) {
+            var response = JsonUtility.FromJson<BadCodeCheckResponse>(json);
+        }
+        //Ok
+        if(responseCode == 200) {
+            var response = JsonUtility.FromJson<CodeCheckResponse>(json);
+            UIMenuManager.Instance.accesstoken = response.accessToken;
+            RegisterMenu.Show();
+        }
+    }
+    #endregion
 }

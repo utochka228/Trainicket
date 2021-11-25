@@ -15,6 +15,30 @@
     {
       "key": "phonefield_lable",
       "value": "Input phone number"
+    },
+    {
+      "key": "firstname_lable",
+      "value": "First name"
+    },
+    {
+      "key": "secondname_lable",
+      "value": "Second name"
+    },
+    {
+      "key": "email_lable",
+      "value": "Email"
+    },
+    {
+      "key": "privilege_lable",
+      "value": "Privilege"
+    },
+    {
+      "key": "birthday_lable",
+      "value": "Birthday"
+    },
+    {
+      "key": "backbtn_lable",
+      "value": "Back"
     }
   ]
 }

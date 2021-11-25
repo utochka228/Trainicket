@@ -71,7 +71,7 @@ public class LocalizationManager : MonoBehaviour
 
         if (Application.platform != RuntimePlatform.Android && File.Exists(filePath))
         {
-            Debug.Log("foud file");
+            Debug.Log("found file");
             string jsonData = File.ReadAllText(filePath);
             LocalizationData localizationData = JsonUtility.FromJson<LocalizationData>(jsonData);
             curr_language = localizationData.items[0].value;

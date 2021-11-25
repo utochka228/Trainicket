@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 1018250474459870762}
   - component: {fileID: 1018250474459870763}
   - component: {fileID: 1018250474459870772}
+  - component: {fileID: 6520911238372388544}
   m_Layer: 5
   m_Name: LoadingMenu
   m_TagString: Untagged
@@ -482,3 +483,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6520911238372388544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018250474459870773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca453b36fea9c2469424d649bb7943d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyWhenClosed: 1
+  DisableMenusUnderneath: 0

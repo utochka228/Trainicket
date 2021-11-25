@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 5609229379496951394}
   - component: {fileID: 7122415691219638073}
   - component: {fileID: 3061459372569496235}
+  - component: {fileID: 1817119226080343552}
   m_Layer: 5
   m_Name: LanguageDropdown
   m_TagString: Untagged
@@ -181,8 +182,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AuthMenu, Assembly-CSharp
+      - m_Target: {fileID: 1817119226080343552}
+        m_TargetAssemblyTypeName: LanguageChanger, Assembly-CSharp
         m_MethodName: ChangeLocalization
         m_Mode: 1
         m_Arguments:
@@ -194,6 +195,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &1817119226080343552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187067069631293939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fdf99484d0807e438933ad7e71621ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  language: {fileID: 3061459372569496235}
 --- !u!1 &2415163810266051327
 GameObject:
   m_ObjectHideFlags: 0

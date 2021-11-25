@@ -15,6 +15,30 @@
     {
       "key": "phonefield_lable",
       "value": "Введите номер телефона"
+    },
+    {
+      "key": "firstname_lable",
+      "value": "Имя"
+    },
+    {
+      "key": "secondname_lable",
+      "value": "Фамилия"
+    },
+    {
+      "key": "email_lable",
+      "value": "Почта"
+    },
+    {
+      "key": "privilege_lable",
+      "value": "Льгота"
+    },
+    {
+      "key": "birthday_lable",
+      "value": "День рождения"
+    },
+    {
+      "key": "backbtn_lable",
+      "value": "Назад"
     }
   ]
 }

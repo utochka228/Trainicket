@@ -13,7 +13,10 @@ public class UIMenuManager : MonoBehaviour
     public SearchMenu searchMenu;
     public LoadingMenu loadingMenu;
     public RegisterMenu registerMenu;
+    public SideMenu sideMenu;
     public string accesstoken;
+
+    List<Menu> visualHelpers = new List<Menu>();
     void Awake()
     {
         if (Instance == null)
@@ -37,8 +40,29 @@ public class UIMenuManager : MonoBehaviour
         Instantiate(prefab, transform);
     }
 
+    public void RemoveAllVisualHelpers() {
+        for (int i = 0; i < visualHelpers.Count; i++) {
+            Destroy(visualHelpers[i].gameObject);
+        }
+        visualHelpers.Clear();
+    }
+
+    public void RemoveVisualHelper(Menu helper) {
+        visualHelpers.Remove(helper);
+        Destroy(helper.gameObject);
+    }
+    public void RemoveVisualHelper(Menu[] helpers) {
+        for (int i = 0; i < helpers.Length; i++) {
+            visualHelpers.Remove(helpers[i]);
+            Destroy(helpers[i].gameObject);
+        }
+    }
     public void OpenMenu(Menu instance)
     {
+        if (instance.VisualHelper) {
+            visualHelpers.Add(instance);
+            return;
+        }
         // De-activate top menu
         if (menuStack.Count > 0)
         {
@@ -83,6 +107,10 @@ public class UIMenuManager : MonoBehaviour
 
     public void CloseMenu(Menu menu)
     {
+        if (menu.VisualHelper) {
+            RemoveVisualHelper(menu);
+            return;
+        }
         if (menuStack.Count == 0)
         {
             Debug.LogErrorFormat(menu, "{0} cannot be closed because menu stack is empty", menu.GetType());

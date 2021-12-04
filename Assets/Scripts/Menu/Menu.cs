@@ -43,5 +43,7 @@ public abstract class Menu : MonoBehaviour
     [Tooltip("Disable menus that are under this one in the stack")]
     public bool DisableMenusUnderneath = true;
 
+    [Tooltip("Mark this like true when you wanna do it independent and not so important")]
+    public bool VisualHelper = false;
     public abstract void OnBackPressed();
 }

@@ -497,3 +497,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyWhenClosed: 1
   DisableMenusUnderneath: 0
+  VisualHelper: 1

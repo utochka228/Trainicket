@@ -1,7 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static JSONStorage;
+using static RestAPI;
+using TrainicketJSONStorage.CodeResponse;
 
 public class AuthMenu : MenuItem<AuthMenu>
 {
@@ -27,7 +28,7 @@ public class AuthMenu : MenuItem<AuthMenu>
         string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\"";
         var body = @"{" + "\n" + phoneNumber + "\n" +
 @"}";
-        StartCoroutine(RestAPI.PostRequest("http://18.117.102.247:5000/api/auth/phone/send", body, ShowPinCodeField, null));
+        StartCoroutine(POST("http://18.117.102.247:5000/api/auth/phone/send", body, ShowPinCodeField, null));
     }
     string responsedCode;
     
@@ -62,7 +63,7 @@ public class AuthMenu : MenuItem<AuthMenu>
         string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\",";
         var body = @"{" + "\n" + phoneNumber + "\n" + "\"code\":" + int.Parse(maskedCode) +
 @"}";
-        StartCoroutine(RestAPI.PostRequest("http://18.117.102.247:5000/api/auth/phone/check", body, CheckResponsedCode, null));
+        StartCoroutine(POST("http://18.117.102.247:5000/api/auth/phone/check", body, CheckResponsedCode, null));
     }
     void CheckResponsedCode(string json, long responseCode) {
         //Bad request

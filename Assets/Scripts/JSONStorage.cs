@@ -1,25 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class JSONStorage
+namespace TrainicketJSONStorage
 {
-    public struct CodeResponse
+    namespace CodeResponse
     {
-        public bool success;
-        public string message;
-        public int SMSCode;
+        public struct CodeResponse
+        {
+            public bool success;
+            public string message;
+            public int SMSCode;
+        }
+        public struct CodeCheckResponse
+        {
+            public bool success;
+            public bool newUser;
+            public string accessToken;
+        }
+        public struct BadCodeCheckResponse
+        {
+            public bool success;
+            public string message;
+        }
     }
-    public struct CodeCheckResponse
+    namespace StationsSearcher
     {
-        public bool success;
-        public bool newUser;
-        public string accessToken;
+        [Serializable]
+        public struct WaySearched
+        {
+            public bool success;
+            public Station[] stations;
+        }
+        [Serializable]
+        public struct Station
+        {
+            public Location location;
+            public string _id;
+            public string city;
+            public string name;
+            public string country;
+        }
+        [Serializable]
+        public struct Location
+        {
+            public double longitude;
+            public double latitude;
+        }
     }
-    public struct BadCodeCheckResponse
-    {
-        public bool success;
-        public string message;
-    }
-    public delegate void Response(string json, long responseCode);
 }
+public delegate void Response(string json, long responseCode);
+

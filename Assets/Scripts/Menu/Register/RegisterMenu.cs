@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static RestAPI;
 
 public class RegisterMenu : MenuItem<RegisterMenu>
 {
@@ -36,7 +37,7 @@ public class RegisterMenu : MenuItem<RegisterMenu>
         string headerValue = "Bearer " + UIMenuManager.Instance.accesstoken;
         Debug.Log("VALUE:" + headerValue);
         HeaderRequest[] headers = new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + UIMenuManager.Instance.accesstoken) };
-        StartCoroutine(RestAPI.PostRequest("http://18.117.102.247:5000/api/user/register", body, GetResponse, headers));
+        StartCoroutine(POST("http://18.117.102.247:5000/api/user/register", body, GetResponse, headers));
     }
     void GetResponse(string json, long responseCode) {
         

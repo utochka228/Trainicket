@@ -322,6 +322,7 @@ MonoBehaviour:
   loadingMenu: {fileID: 6520911238372388544, guid: 96e47b433c65a044d83667cb8a6fced9, type: 3}
   registerMenu: {fileID: 7844114947101024169, guid: 21b9e345f93b8dc409fee043981507b8, type: 3}
   sideMenu: {fileID: 7092165933448333432, guid: 54c296c20e01d8a4393b2719e35b63f7, type: 3}
+  calendarMenu: {fileID: 1355406796632772964, guid: 78a5ff8888013084c8d5c9d268d6d72f, type: 3}
   accesstoken: 
 --- !u!114 &1365513354
 MonoBehaviour:

@@ -15,6 +15,7 @@ public class UIMenuManager : MonoBehaviour
     public RegisterMenu registerMenu;
     public SideMenu sideMenu;
     public CalendarMenu calendarMenu;
+    public InputSelector inputSelector;
     public string accesstoken;
 
     List<Menu> visualHelpers = new List<Menu>();

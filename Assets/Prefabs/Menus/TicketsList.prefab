@@ -504,7 +504,7 @@ MonoBehaviour:
   DestroyWhenClosed: 1
   DisableMenusUnderneath: 1
   VisualHelper: 0
-  detailInfoPrefab: {fileID: 0}
+  detailInfoPrefab: {fileID: 8156560769781300219, guid: 04b699bdffb065047816a1139306d82e, type: 3}
   wayHolder: {fileID: 2890914379754908016}
 --- !u!1 &2213743906791376979
 GameObject:

@@ -54,7 +54,6 @@ public class Calendar : MonoBehaviour
                 obj.GetComponentInChildren<Text>().text = "";
                 myButton.interactable = false;
             }
-            Debug.Log("Day:" + dayNum + "DateTime.Today.Day" + DateTime.Today.Day + " year:" + year + " month:" + month);
             if(year == DateTime.Today.Year) {
                 if(month < DateTime.Today.Month)
                     myButton.interactable = false;

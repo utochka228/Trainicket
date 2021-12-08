@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,4 +17,18 @@ public static class Utils
         g.color = color;
         return g;
     }
+    public static IEnumerator Lerp(float startValue, float endValue, float duration, LerpDelegate action) {
+        float timeElapsed = 0;
+        float valueToLerp = startValue;
+
+        while (timeElapsed < duration) {
+            valueToLerp = Mathf.Lerp(startValue, endValue, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            action?.Invoke(valueToLerp, false);
+            yield return null;
+        }
+        valueToLerp = endValue;
+        action?.Invoke(valueToLerp, true);
+    }
+    public delegate void LerpDelegate(float lerpValue, bool isEnd);
 }

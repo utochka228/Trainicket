@@ -42,4 +42,6 @@ public class RegisterMenu : MenuItem<RegisterMenu>
     void GetResponse(string json, long responseCode) {
         
     }
+
+    public void ShowCalendar() => CalendarMenu.Show();
 }

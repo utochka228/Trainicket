@@ -9,7 +9,7 @@ public class TicketsListMenu : MenuItem<TicketsListMenu>
     // Start is called before the first frame update
     void OnEnable()
     {
-        detailInfoPrefab = (GameObject)Resources.Load("UIElements/TicketsList/DetailInfo");
+
     }
 
     // Update is called once per frame

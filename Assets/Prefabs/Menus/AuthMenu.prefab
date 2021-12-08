@@ -924,6 +924,7 @@ GameObject:
   - component: {fileID: 1207184711}
   - component: {fileID: 1207184710}
   - component: {fileID: 721781645630047785}
+  - component: {fileID: 8319761771031698533}
   m_Layer: 5
   m_Name: Phone
   m_TagString: Untagged
@@ -1069,10 +1070,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8319761771031698533}
+        m_TargetAssemblyTypeName: InputFieldHandler, Assembly-CSharp
+        m_MethodName: ReplaceToFocusZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8319761771031698533}
+        m_TargetAssemblyTypeName: InputFieldHandler, Assembly-CSharp
+        m_MethodName: RemoveFromFocusZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -1113,6 +1138,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phoneInputField: {fileID: 1207184710}
+--- !u!114 &8319761771031698533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207184708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc655d462a898ce44a2bfe0de71fd494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lable: {fileID: 5593228296582100606}
+  parentToReplacing: {fileID: 0}
+  removeOnPressingBack: 0
 --- !u!1 &1269235961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,6 +3021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6880021757430317393}
+  - component: {fileID: 102076145145372690}
   m_Layer: 5
   m_Name: PincodeBlock
   m_TagString: Untagged
@@ -3009,6 +3050,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &102076145145372690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5062950451724774543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc655d462a898ce44a2bfe0de71fd494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lable: {fileID: 4579378863483292143}
+  parentToReplacing: {fileID: 6880021757430317393}
+  removeOnPressingBack: 1
 --- !u!1 &5851649894986445943
 GameObject:
   m_ObjectHideFlags: 0
@@ -3201,6 +3257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyWhenClosed: 1
   DisableMenusUnderneath: 1
+  VisualHelper: 0
   sendCodeBtn: {fileID: 275276370}
   continueBtn: {fileID: 5470668913242361882}
   phoneBlock: {fileID: 4362089739846288768}

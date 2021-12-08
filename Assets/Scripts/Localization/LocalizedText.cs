@@ -7,19 +7,19 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ContentSizeFitter))]
 public class LocalizedText : MonoBehaviour
 {
-    [SerializeField] private string localizationKey;
+    public string localizationKey;
     public TextMeshProUGUI text;
     private void OnEnable()
     {
         text = GetComponent<TextMeshProUGUI>();
         text.text = LocalizationManager.instance.GetLocalizedValue(localizationKey);
-        LocalizationManager.OnLocalizationChanged += changeLocalization;
+        LocalizationManager.OnLocalizationChanged += ChangeLocalization;
     }
     private void OnDisable()
     {
-        LocalizationManager.OnLocalizationChanged -= changeLocalization;
+        LocalizationManager.OnLocalizationChanged -= ChangeLocalization;
     }
-    private void changeLocalization() {
+    public void ChangeLocalization() {
         text.text = LocalizationManager.instance.GetLocalizedValue(localizationKey);
     }
 }

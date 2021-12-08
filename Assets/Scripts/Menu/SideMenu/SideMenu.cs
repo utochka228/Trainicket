@@ -36,25 +36,13 @@ public class SideMenu : MenuItem<SideMenu>
             endAlpha = 0.5f;
         }
         float duration = 0.2f;
-        StartCoroutine(Lerp(startWidth, endWidth, duration, (lerpWidth, end) => {
+        StartCoroutine(Utils.Lerp(startWidth, endWidth, duration, (lerpWidth, end) => {
             layoutElement.preferredWidth = lerpWidth;
             if (end && hide)
                 Close();
         }));
-        StartCoroutine(Lerp(startAlpha, endAlpha, duration, (lerpAlpha, end) => darkRegion.ChangeAlpha(lerpAlpha)));
+        StartCoroutine(Utils.Lerp(startAlpha, endAlpha, duration, (lerpAlpha, end) => darkRegion.ChangeAlpha(lerpAlpha)));
     }
-    IEnumerator Lerp(float startValue, float endValue, float duration, Action<float, bool> action) {
-        float timeElapsed = 0;
-        float valueToLerp = startValue;
-
-        while (timeElapsed < duration) {
-            valueToLerp = Mathf.Lerp(startValue, endValue, timeElapsed / duration);
-            timeElapsed += Time.deltaTime;
-            action?.Invoke(valueToLerp, false);
-            yield return null;
-        }
-        valueToLerp = endValue;
-        action?.Invoke(valueToLerp, true);
-    }
+    
     public void HideMenu() => ShowMenu(true);
 }

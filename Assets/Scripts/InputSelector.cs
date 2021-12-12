@@ -65,7 +65,8 @@ public class InputSelector : MenuItem<InputSelector>
             fieldLable.color = newColor;
         }));
         target.transform.SetParent(previousParent);
-        lableOrigin.SetActive(true);
+
+        lableOrigin?.SetActive(true);
         Close();
     }
     public override void OnBackPressed() {

@@ -65,6 +65,7 @@ public class AuthMenu : MenuItem<AuthMenu>
 @"}";
         StartCoroutine(POST("http://18.117.102.247:5000/api/auth/phone/check", body, CheckResponsedCode, null));
     }
+    #endregion
     void CheckResponsedCode(string json, long responseCode) {
         //Bad request
         if(responseCode == 400) {
@@ -73,9 +74,12 @@ public class AuthMenu : MenuItem<AuthMenu>
         //Ok
         if(responseCode == 200) {
             var response = JsonUtility.FromJson<CodeCheckResponse>(json);
-            UIMenuManager.Instance.accesstoken = response.accessToken;
-            RegisterMenu.Show();
+            if (response.newUser) {
+                UIMenuManager.Instance.accesstoken = response.accessToken;
+                RegisterMenu.Show();
+            }
+            else
+                SearchMenu.Show();
         }
     }
-    #endregion
 }

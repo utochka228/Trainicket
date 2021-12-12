@@ -33,7 +33,17 @@ public class Searcher : MonoBehaviour
     }
     public void OnSymbolsInputWhere(string where) {
         if (where.Length >= 3) {
+            //Hide elements
+            HideElements(new GameObject[] { whereField.gameObject });
+            var url = "http://18.117.102.247:5000/api/stations/search?search=" + where;
+            StartCoroutine(GET(url, (json, responseCode) => {
+                var way = JsonUtility.FromJson<WaySearched>(json);
 
+                if (way.stations != null)
+                    if (way.stations.Length > 0)
+                        CreateSearchedDropdown(way, whereField, whereHolder);
+
+            }, null));
         }
     }
     public void CreateSearchedDropdown(WaySearched way, TMP_InputField inputField, Transform holder) {

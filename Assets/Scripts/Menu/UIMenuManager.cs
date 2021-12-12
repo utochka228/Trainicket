@@ -32,7 +32,10 @@ public class UIMenuManager : MonoBehaviour
     private void Start() {
         Application.targetFrameRate = 60;
 
-        AuthMenu.Show();
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("userToken")))
+            AuthMenu.Show();
+        else
+            SearchMenu.Show();
     }
 
     public void CreateInstance<T>() where T : Menu
@@ -159,6 +162,8 @@ public class UIMenuManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.C))
+            PlayerPrefs.DeleteKey("userToken");
         // On Android the back button is sent as Esc
         if (Input.GetKeyDown(KeyCode.Escape) && menuStack.Count > 0)
         {

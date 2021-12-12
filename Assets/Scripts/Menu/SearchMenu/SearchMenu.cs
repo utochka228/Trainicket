@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SearchMenu : MenuItem<SearchMenu>
 {
     public static TargetSearch targetSearch;
     public Searcher searcher;
+    [SerializeField] TextMeshProUGUI dateTxt;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,17 @@ public class SearchMenu : MenuItem<SearchMenu>
     public void ShowSideMenu() {
         SideMenu.Show();
     }
-    public void ShowCalendar() => CalendarMenu.Show();
+    DateTime childDate;
+    public DateTime ChildDate {
+        get {
+            return childDate;
+        }
+        set {
+            childDate = value;
+            dateTxt.text = childDate.Date.ToString("dd.MM.yyyy");
+        }
+    }
+    public void ShowCalendar() => CalendarMenu.ShowCalendar((selectedDate) => ChildDate = selectedDate);
 
     public void Search() {
 

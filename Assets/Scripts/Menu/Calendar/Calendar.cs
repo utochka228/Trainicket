@@ -7,6 +7,7 @@ using TMPro;
 
 public class Calendar : MonoBehaviour
 {
+    public static DateTime date;
     /// <summary>
     /// Cell or slot in the calendar. All the information each day should now about itself
     /// </summary>
@@ -94,6 +95,7 @@ public class Calendar : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        date = DateTime.Now;
         currDate = DateTime.Now;
         UpdateCalendar(DateTime.Now.Year, DateTime.Now.Month);
     }

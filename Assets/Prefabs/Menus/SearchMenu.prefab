@@ -274,6 +274,7 @@ MonoBehaviour:
   DisableMenusUnderneath: 1
   VisualHelper: 0
   searcher: {fileID: 1639134947857778878}
+  dateTxt: {fileID: 6027077493912798218}
 --- !u!114 &1639134947857778878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1513,6 +1514,7 @@ GameObject:
   - component: {fileID: 2034873663742499357}
   - component: {fileID: 2533450692458027415}
   - component: {fileID: 1563009552645076977}
+  - component: {fileID: 2379503384434991441}
   m_Layer: 5
   m_Name: From
   m_TagString: Untagged
@@ -1640,6 +1642,27 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
+      m_Calls: []
+  m_OnSubmit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2379503384434991441}
+        m_TargetAssemblyTypeName: InputFieldHandler, Assembly-CSharp
+        m_MethodName: ReplaceToFocusZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_OnDeselect:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1639134947857778878}
         m_TargetAssemblyTypeName: Searcher, Assembly-CSharp
@@ -1665,15 +1688,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_OnSubmit:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeselect:
-    m_PersistentCalls:
-      m_Calls: []
+      - m_Target: {fileID: 2379503384434991441}
+        m_TargetAssemblyTypeName: InputFieldHandler, Assembly-CSharp
+        m_MethodName: RemoveFromFocusZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -1713,6 +1739,21 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &2379503384434991441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479741215781268393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc655d462a898ce44a2bfe0de71fd494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lable: {fileID: 0}
+  parentToReplacing: {fileID: 0}
+  removeOnPressingBack: 0
 --- !u!1 &5751439458921638058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,7 +2077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 12.05.2002
+  m_text: Select date
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c0e6d3828c57c4b4eb8c69f958596393, type: 2}
   m_sharedMaterial: {fileID: 3031865998422267887, guid: c0e6d3828c57c4b4eb8c69f958596393, type: 2}
@@ -2117,6 +2158,7 @@ GameObject:
   - component: {fileID: 5734522397336048125}
   - component: {fileID: 8814806749985305313}
   - component: {fileID: 3389379500126970327}
+  - component: {fileID: 8393427803894176938}
   m_Layer: 5
   m_Name: Where
   m_TagString: Untagged
@@ -2244,6 +2286,27 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
+      m_Calls: []
+  m_OnSubmit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8393427803894176938}
+        m_TargetAssemblyTypeName: InputFieldHandler, Assembly-CSharp
+        m_MethodName: ReplaceToFocusZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_OnDeselect:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1639134947857778878}
         m_TargetAssemblyTypeName: Searcher, Assembly-CSharp
@@ -2257,15 +2320,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_OnSubmit:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeselect:
-    m_PersistentCalls:
-      m_Calls: []
+      - m_Target: {fileID: 1639134947857778878}
+        m_TargetAssemblyTypeName: Searcher, Assembly-CSharp
+        m_MethodName: DestroyDropdowns
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8393427803894176938}
+        m_TargetAssemblyTypeName: InputFieldHandler, Assembly-CSharp
+        m_MethodName: RemoveFromFocusZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []
@@ -2305,6 +2383,21 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &8393427803894176938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317757399931239041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc655d462a898ce44a2bfe0de71fd494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lable: {fileID: 0}
+  parentToReplacing: {fileID: 0}
+  removeOnPressingBack: 0
 --- !u!1 &7502464104286004378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,7 +2915,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2658207945722608865}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6682383287485069836}
+        m_TargetAssemblyTypeName: SearchMenu, Assembly-CSharp
+        m_MethodName: Search
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9018189042828151404
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,7 +3318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4623630592482466534, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 378.2946
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4623630592482466534, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3265,7 +3370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8898571605924178214, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 158.275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8898571605924178214, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3355,7 +3460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4623630592482466534, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1622.4846
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4623630592482466534, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3411,7 +3516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8898571605924178214, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 267.83502
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8898571605924178214, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3501,7 +3606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4623630592482466534, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 945.6096
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4623630592482466534, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3557,7 +3662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8898571605924178214, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 407.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8898571605924178214, guid: be2f75ebf30b4fb4bae1ca559c6d2db5, type: 3}
       propertyPath: m_AnchoredPosition.y

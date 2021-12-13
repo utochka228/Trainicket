@@ -6,8 +6,10 @@ using UnityEngine;
 public class CalendarMenu : MenuItem<CalendarMenu>
 {
     Action<DateTime> OnSelectedDate;
-    public static void ShowCalendar(Action<DateTime> OnSelectedDate) {
+    public bool showAllDays;
+    public static void ShowCalendar(Action<DateTime> OnSelectedDate, bool showAllDays = false) {
         Show();
+        i.showAllDays = showAllDays;
         i.OnSelectedDate = OnSelectedDate;
     }
     public void ApplySelectedDate() {

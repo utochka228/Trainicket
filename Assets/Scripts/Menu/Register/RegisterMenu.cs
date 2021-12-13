@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using TrainicketJSONStorage.CodeResponse;
+using TrainicketJSONStorage.RegisterBody;
 using UnityEngine;
 using static RestAPI;
 
@@ -21,35 +23,19 @@ public class RegisterMenu : MenuItem<RegisterMenu>
     public TMP_InputField studentNumber;
     public void SendRegisteredValues() {
         var body = "";
+        Privilege priv = new Privilege("", "");
         if (privilege.value == 1) {
-            body = @"{" + "\n" +
-@$"    ""userName"":""trainicket user({UnityEngine.Random.Range(0, 99999f)})""," + "\n" +
-@$"    ""email"":""{email.text}""," + "\n" +
-@"" + "\n" +
-@"    " + "\n" +
-@$"    ""firstName"":""{firstName.text}""," + "\n" +
-@$"    ""lastName"":""{secondName.text}""," + "\n" +
-@"    ""privilege"":{" + "\n" +
-@"        ""type"":""child""," + "\n" +
-@$"        ""data"":""{ChildDate.Date.ToString().Replace('/', '.')}""" + "\n" +
-@"    }" + "\n" +
-@"" + "\n" +
-@"}";
+            priv = new Privilege("child", ChildDate.Date.ToString("yy.MM.dd"));
         }
         if (privilege.value == 2) {
-            body =  @"{" + "\n" +
-@$"    ""userName"":""trainicket user({UnityEngine.Random.Range(0, 99999f)})""," + "\n" +
-@$"    ""email"":""{email.text}""," + "\n" +
-@"" + "\n" +
-@"    " + "\n" +
-@$"    ""firstName"":""{firstName.text}""," + "\n" +
-@$"    ""lastName"":""{secondName.text}""," + "\n" +
-@"    ""privilege"":{" + "\n" +
-@"        ""type"":""student""," + "\n" +
-@$"        ""data"":""BK{UnityEngine.Random.Range(10000000, 100000000)}""" + "\n" +
-@"    }" + "\n" +
-@"" + "\n" +
-@"}";
+            priv = new Privilege("student", "BK" + UnityEngine.Random.Range(10000000, 100000000));
+        }
+        RegisteredData registeredData = new RegisteredData($"trainicket user({UnityEngine.Random.Range(0, 99999f)})", email.text, firstName.text, secondName.text, priv);
+        body = JsonUtility.ToJson(registeredData);
+
+        if(privilege.value == 0) {
+            var mask = new Regex(@",""privilege"".*?(?=})}");
+            body = mask.Replace(body, "");
         }
         string headerValue = "Bearer " + UIMenuManager.Instance.accesstoken;
         Debug.Log("VALUE:" + headerValue);
@@ -75,7 +61,7 @@ public class RegisterMenu : MenuItem<RegisterMenu>
             childDateTxt.text = childDate.Date.ToString("dd.MM.yyyy");
         }
     }
-    public void ShowCalendar() => CalendarMenu.ShowCalendar((selectedDate)=> ChildDate = selectedDate);
+    public void ShowCalendar() => CalendarMenu.ShowCalendar((selectedDate)=> ChildDate = selectedDate, true);
 
     void SaveToken(string token) {
         PlayerPrefs.SetString("userToken", token);

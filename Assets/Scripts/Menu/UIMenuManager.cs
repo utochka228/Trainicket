@@ -16,6 +16,9 @@ public class UIMenuManager : MonoBehaviour
     public SideMenu sideMenu;
     public CalendarMenu calendarMenu;
     public InputSelector inputSelector;
+    public TicketsListMenu ticketsList;
+    public TrainInfoMenu trainInfoMenu;
+    public BookingMenu bookingMenu;
     public string accesstoken;
 
     List<Menu> visualHelpers = new List<Menu>();
@@ -32,10 +35,17 @@ public class UIMenuManager : MonoBehaviour
     private void Start() {
         Application.targetFrameRate = 60;
 
-        if (string.IsNullOrEmpty(PlayerPrefs.GetString("userToken")))
-            AuthMenu.Show();
-        else
+        if(AuthMenu.LoadAuthShowing() == 2 || AuthMenu.LoadAuthShowing() == 0) {
+            if (string.IsNullOrEmpty(PlayerPrefs.GetString("userToken")))
+                AuthMenu.Show();
+            else {
+                accesstoken = PlayerPrefs.GetString("userToken");
+                SearchMenu.Show();
+            }
+        } 
+        if(AuthMenu.LoadAuthShowing() == 1) {
             SearchMenu.Show();
+        }
     }
 
     public void CreateInstance<T>() where T : Menu
@@ -162,8 +172,10 @@ public class UIMenuManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C)) {
             PlayerPrefs.DeleteKey("userToken");
+            PlayerPrefs.DeleteKey("showAuth");
+        }
         // On Android the back button is sent as Esc
         if (Input.GetKeyDown(KeyCode.Escape) && menuStack.Count > 0)
         {

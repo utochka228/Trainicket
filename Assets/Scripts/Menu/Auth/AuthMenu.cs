@@ -3,26 +3,40 @@ using UnityEngine;
 using UnityEngine.UI;
 using static RestAPI;
 using TrainicketJSONStorage.CodeResponse;
+using System.Text.RegularExpressions;
 
 public class AuthMenu : MenuItem<AuthMenu>
 {
-    [SerializeField] GameObject sendCodeBtn;
-    [SerializeField] Button continueBtn;
+    [SerializeField] Button sendCodeBtn;
     [SerializeField] GameObject phoneBlock;
     [SerializeField] GameObject pincodeBlock;
     [SerializeField] TMP_InputField phoneField;
     [SerializeField] TMP_InputField[] pinFields;
+    [SerializeField] GameObject authShowingMessage;
 
     string inputPhoneNumber;
-    // Start is called before the first frame update
-    void Start()
-    {
-        sendCodeBtn.SetActive(true);
+    private void Start() {
+        sendCodeBtn.interactable = false;
     }
-    public void SkipAuthStep() {
+    public static int LoadAuthShowing() {
+        return PlayerPrefs.GetInt("showAuth");
+    }
+    public void SaveAuthShowing(int value) {
+        PlayerPrefs.SetInt("showAuth", value);
         SearchMenu.Show();
     }
+    public void SkipAuthStep() {
+        if (LoadAuthShowing() == 0 || LoadAuthShowing() == 2)
+            authShowingMessage.SetActive(true);
+    }
     
+    public void CheckPhone() {
+        Regex regex = new Regex(@"^\+?3?8?(0\d{9})$");
+        if (regex.IsMatch(phoneField.text))
+            sendCodeBtn.interactable = true;
+        else
+            sendCodeBtn.interactable = false;
+    }
     public void SendPhone() {
         inputPhoneNumber = phoneField.text;
         string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\"";
@@ -34,34 +48,29 @@ public class AuthMenu : MenuItem<AuthMenu>
     
     #region PinCode
     void ShowPinCodeField(string json, long responseCode) {
+        var codeResponse = JsonUtility.FromJson<CodeResponse>(json);
         phoneBlock.SetActive(false);
-        sendCodeBtn.SetActive(false);
-        continueBtn.gameObject.SetActive(true);
-        continueBtn.interactable = false;
+        sendCodeBtn.gameObject.SetActive(false);
         pincodeBlock.SetActive(true);
+        #region AutoSavingCode
+            var code = codeResponse.SMSCode.ToString();
+            for (int i = 0; i < pinFields.Length; i++) {
+                var pin = pinFields[i];
+                pin.text = code[i].ToString();
+            }
+            SendEnteredCode();
+        #endregion
+        //SelectFirstPin();
     }
-    int pinCountEntered;
-    string maskedCode = "xxxx";
-    public void OnPinEntered(int index) {
-        var pinField = pinFields[index];
-        if (string.IsNullOrEmpty(pinField.text)) {
-            if (maskedCode[index] != 'x')
-                pinCountEntered--;
-            maskedCode = Utils.ReplaceSymbol(maskedCode, index, 'x');
-            if (pinCountEntered < 4)
-                continueBtn.interactable = false;
-            return;
-        }
-        if (maskedCode[index] != 'x')
-            return;
-        maskedCode = Utils.ReplaceSymbol(maskedCode, index, pinField.text[0]);
-        pinCountEntered++;
-        if(pinCountEntered == 4)
-            continueBtn.interactable = true;
-    }
+    public void SelectFirstPin() => pinFields[0].Select();
+    
     public void SendEnteredCode() {
         string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\",";
-        var body = @"{" + "\n" + phoneNumber + "\n" + "\"code\":" + int.Parse(maskedCode) +
+        string pinCode = "";
+        foreach (var pin in pinFields) {
+            pinCode += pin.text;
+        }
+        var body = @"{" + "\n" + phoneNumber + "\n" + "\"code\":" + pinCode +
 @"}";
         StartCoroutine(POST("http://18.117.102.247:5000/api/auth/phone/check", body, CheckResponsedCode, null));
     }
@@ -81,5 +90,8 @@ public class AuthMenu : MenuItem<AuthMenu>
             else
                 SearchMenu.Show();
         }
+    }
+    public override void OnBackPressed() {
+        
     }
 }

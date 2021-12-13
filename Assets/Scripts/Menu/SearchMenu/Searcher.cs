@@ -15,7 +15,11 @@ public class Searcher : MonoBehaviour
 
     [SerializeField] List<GameObject> toHide = new List<GameObject>();
 
+    bool canAddChildren;
+    public void SetAddingChildrenState(bool state) => canAddChildren = state;
     public void OnSymbolsInputFrom(string from) {
+        if (canAddChildren == false)
+            return;
         DestroyDropdowns();
         if (from.Length >= 3) {
             //Hide elements
@@ -32,6 +36,8 @@ public class Searcher : MonoBehaviour
         }
     }
     public void OnSymbolsInputWhere(string where) {
+        if (canAddChildren == false)
+            return;
         if (where.Length >= 3) {
             //Hide elements
             HideElements(new GameObject[] { whereField.gameObject });
@@ -50,6 +56,8 @@ public class Searcher : MonoBehaviour
         var count = way.stations.Length;
         for (int i = 0; i < count; i++) {
             var _dropDown = Instantiate(dropdown, holder).GetComponent<SearchedDropdown>();
+            _dropDown.button.onClick.AddListener(inputField.GetComponent<InputFieldHandler>().RemoveFromFocusZone);
+            _dropDown.button.onClick.AddListener(()=> inputField.onDeselect.Invoke(inputField.text));
             bool from = holder == fromField ? true : false;
             _dropDown.Initialize(way.stations[i]._id, way.stations[i].city, from, inputField);
         }

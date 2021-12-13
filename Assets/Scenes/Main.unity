@@ -324,6 +324,9 @@ MonoBehaviour:
   sideMenu: {fileID: 7092165933448333432, guid: 54c296c20e01d8a4393b2719e35b63f7, type: 3}
   calendarMenu: {fileID: 1355406796632772964, guid: 78a5ff8888013084c8d5c9d268d6d72f, type: 3}
   inputSelector: {fileID: -5240986622857567185, guid: 4de1dee178e5ff94fb961289c0df9504, type: 3}
+  ticketsList: {fileID: 1482776247613922104, guid: 4af9ded4ce5c88c41bf9a97cc7ddfd36, type: 3}
+  trainInfoMenu: {fileID: 6929917728556580551, guid: 111fb27f5790cde408511450bc262c00, type: 3}
+  bookingMenu: {fileID: 7996155668321113431, guid: 5a78fa42e977b6144bcff40648e48149, type: 3}
   accesstoken: 
 --- !u!114 &1365513354
 MonoBehaviour:

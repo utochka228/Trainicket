@@ -48,6 +48,77 @@ namespace TrainicketJSONStorage
             public double latitude;
         }
     }
+    namespace RegisterBody
+    {
+        [Serializable]
+        public struct RegisteredData
+        {
+            public string userName;
+            public string email;
+            public string firstName;
+            public string lastName;
+            public Privilege privilege;
+
+            public RegisteredData(string name, string email, string first, string second, Privilege privilege) {
+                userName = name;
+                this.email = email;
+                firstName = first;
+                lastName = second;
+                this.privilege = privilege;
+            }
+        }
+        [Serializable]
+        public struct Privilege
+        {
+            public string type;
+            public string data;
+
+            public Privilege(string type, string data) {
+                this.type = type;
+                this.data = data;
+            }
+        }
+    }
+    namespace TrainDetailInfo
+    {
+        [Serializable]
+        public struct TrainInfo
+        {
+            public bool success;
+        }
+        [Serializable]
+        public struct Train
+        {
+            public string _id;
+            public string name;
+            public string type;
+            public Van[] vans;
+            public VanClassSeats seats;
+            public Seat[] freeSeats;
+        }
+        [Serializable]
+        public struct Van
+        {
+            public Seat[] seats;
+            public string _id;
+            public string VanClass;
+        }
+        [Serializable]
+        public struct Seat
+        {
+            public bool occupied;
+            public string _id;
+            public int number;
+        }
+        [Serializable]
+        public struct VanClassSeats
+        {
+            public int zero;
+            public int first;
+            public int second;
+            public int third;
+        }
+    }
 }
 public delegate void Response(string json, long responseCode);
 

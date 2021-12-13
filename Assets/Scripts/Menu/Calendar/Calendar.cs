@@ -44,6 +44,8 @@ public class Calendar : MonoBehaviour
         {
             this.dayNum = newDayNum;
             var myButton = obj.GetComponentInChildren<Button>();
+            myButton.onClick.RemoveAllListeners();
+            myButton.onClick.AddListener(() => date = new DateTime(year, month, newDayNum+1));
 
             if (dayColor == Color.white || dayColor == Color.green)
             {
@@ -55,15 +57,17 @@ public class Calendar : MonoBehaviour
                 obj.GetComponentInChildren<Text>().text = "";
                 myButton.interactable = false;
             }
-            if(year == DateTime.Today.Year) {
-                if(month < DateTime.Today.Month)
-                    myButton.interactable = false;
-                if(month == DateTime.Today.Month)
-                    if(dayNum < DateTime.Today.Day)
+            if(CalendarMenu.i.showAllDays == false) {
+                if(year == DateTime.Today.Year) {
+                    if(month < DateTime.Today.Month)
+                        myButton.interactable = false;
+                    if(month == DateTime.Today.Month)
+                        if(dayNum < DateTime.Today.Day)
+                            myButton.interactable = false;
+                }
+                if (year < DateTime.Today.Year)
                         myButton.interactable = false;
             }
-            if (year < DateTime.Today.Year)
-                    myButton.interactable = false;
         }
     }
 

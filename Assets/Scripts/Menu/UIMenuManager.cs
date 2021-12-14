@@ -16,7 +16,7 @@ public class UIMenuManager : MonoBehaviour
     public SideMenu sideMenu;
     public CalendarMenu calendarMenu;
     public InputSelector inputSelector;
-    public TicketsListMenu ticketsList;
+    public RoutesListMenu ticketsList;
     public TrainInfoMenu trainInfoMenu;
     public BookingMenu bookingMenu;
     public string accesstoken;

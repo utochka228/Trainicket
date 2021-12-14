@@ -1,13 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InputFieldHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI lable;
     [SerializeField] RectTransform parentToReplacing;
     [SerializeField] bool removeOnPressingBack;
+    public UnityEvent OnRemoveFocusZoneActions;
 
     bool replaced;
     bool removed;

@@ -57,6 +57,7 @@ public class InputSelector : MenuItem<InputSelector>
         raycastBlocker.blocksRaycasts = true;
         LerpAnchoredStartPos(target.anchoredPosition, startPosInThisParent);
         yield return new WaitUntil(() => xBackDone && yBackDone);
+        target.transform.GetComponent<InputFieldHandler>().OnRemoveFocusZoneActions?.Invoke();
         yield return StartCoroutine(Utils.Lerp(0.9f, 0f, 0.1f, (lerpValue, isEnd) => {
             background.ChangeAlpha(lerpValue);
         }));
@@ -65,7 +66,6 @@ public class InputSelector : MenuItem<InputSelector>
             fieldLable.color = newColor;
         }));
         target.transform.SetParent(previousParent);
-
         lableOrigin?.SetActive(true);
         Close();
     }

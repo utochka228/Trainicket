@@ -1205,7 +1205,7 @@ GameObject:
   - component: {fileID: 3612831886146307615}
   - component: {fileID: 6270922821861512791}
   m_Layer: 5
-  m_Name: Way
+  m_Name: Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,6 +1329,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ab61d6a2eda7e42b5dfa2aa16448d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRoute:
+    _id: 
+    from:
+      location:
+        longitude: 0
+        latitude: 0
+      _id: 
+      name: 
+    to:
+      location:
+        longitude: 0
+        latitude: 0
+      _id: 
+      name: 
+    train:
+      _id: 
+      name: 
+      type: 
+      vans: []
+      seats:
+        zero: 0
+        first: 0
+        second: 0
+        third: 0
+      freeSeats: []
+    route: {}
+    time: 
+  fromLable: {fileID: 1149325619665684432}
+  whereLable: {fileID: 4515525197440138435}
+  dateFrom: {fileID: 1820960365538774713}
+  timeFrom: {fileID: 4780888934311434090}
+  dateWhere: {fileID: 3705448133020268160}
+  timeWhere: {fileID: 2317247671432854907}
+  totalTime: {fileID: 3334191257971808951}
   expandBtn: {fileID: 7997464742433660548}
   collapseIcon: {fileID: 8920728240448759079}
   expandIcon: {fileID: 627516524040483601}

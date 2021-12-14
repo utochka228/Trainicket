@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using TrainicketJSONStorage.FoundRoutes;
+using Newtonsoft.Json;
 
 public class SearchMenu : MenuItem<SearchMenu>
 {
@@ -11,13 +13,7 @@ public class SearchMenu : MenuItem<SearchMenu>
     [SerializeField] TextMeshProUGUI dateTxt;
     [SerializeField] TMP_InputField from;
     [SerializeField] TMP_InputField where;
-    // Start is called before the first frame update
-    void Start()
-    {
-        ChildDate = DateTime.Today.Date;
-        dateTxt.text = DateTime.Today.Date.ToString("dd.MM.yyyy");
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +36,18 @@ public class SearchMenu : MenuItem<SearchMenu>
     public void ShowCalendar() => CalendarMenu.ShowCalendar((selectedDate) => ChildDate = selectedDate);
 
     public void Search() {
-        TicketsListMenu.Show();
+        var url = "http://18.117.102.247:5000/api/route/search?date=" + targetSearch.date.ToString("yyyy-MM-dd") + "&from=" + targetSearch.from + "&to=" + targetSearch.where;
+        StartCoroutine(RestAPI.GET(url, GetSearchedWays, null));
+    }
+    void GetSearchedWays(string json, long responseCode) {
+        Debug.Log(json);
+        switch (responseCode) {
+            case 200:
+                RoutesListMenu.ShowFoundRoutes(JsonUtility.FromJson<FoundRoutes>(json));
+                break;
+            default:
+                break;
+        }
     }
     public void SwapStations() {
         var from = targetSearch.from;

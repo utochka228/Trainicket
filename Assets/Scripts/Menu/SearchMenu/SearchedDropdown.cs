@@ -35,7 +35,7 @@ public class SearchedDropdown : MonoBehaviour
         myInputField.text = city;
         //SearchMenu.i.searcher.DestroyDropdowns();
         //SearchMenu.i.searcher.ShowHiddenElements();
-        myInputField.DeactivateInputField();
+        myInputField.GetComponent<InputFieldHandler>().OnRemoveFocusZoneActions?.Invoke();
 
         wasPressed = false;
     }

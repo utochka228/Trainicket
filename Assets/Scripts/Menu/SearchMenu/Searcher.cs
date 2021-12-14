@@ -17,6 +17,7 @@ public class Searcher : MonoBehaviour
 
     bool canAddChildren;
     public void SetAddingChildrenState(bool state) => canAddChildren = state;
+
     public void OnSymbolsInputFrom(string from) {
         if (canAddChildren == false)
             return;
@@ -30,7 +31,7 @@ public class Searcher : MonoBehaviour
 
                 if(way.stations != null)
                     if(way.stations.Length > 0)
-                        CreateSearchedDropdown(way, fromField, fromHolder);
+                        CreateSearchedDropdown(way, fromField, fromHolder, true);
 
             }, null));
         }
@@ -38,6 +39,7 @@ public class Searcher : MonoBehaviour
     public void OnSymbolsInputWhere(string where) {
         if (canAddChildren == false)
             return;
+        DestroyDropdowns();
         if (where.Length >= 3) {
             //Hide elements
             HideElements(new GameObject[] { whereField.gameObject });
@@ -47,19 +49,16 @@ public class Searcher : MonoBehaviour
 
                 if (way.stations != null)
                     if (way.stations.Length > 0)
-                        CreateSearchedDropdown(way, whereField, whereHolder);
+                        CreateSearchedDropdown(way, whereField, whereHolder, false);
 
             }, null));
         }
     }
-    public void CreateSearchedDropdown(WaySearched way, TMP_InputField inputField, Transform holder) {
+    public void CreateSearchedDropdown(WaySearched way, TMP_InputField inputField, Transform holder, bool fromField) {
         var count = way.stations.Length;
         for (int i = 0; i < count; i++) {
             var _dropDown = Instantiate(dropdown, holder).GetComponent<SearchedDropdown>();
-            _dropDown.button.onClick.AddListener(inputField.GetComponent<InputFieldHandler>().RemoveFromFocusZone);
-            _dropDown.button.onClick.AddListener(()=> inputField.onDeselect.Invoke(inputField.text));
-            bool from = holder == fromField ? true : false;
-            _dropDown.Initialize(way.stations[i]._id, way.stations[i].city, from, inputField);
+            _dropDown.Initialize(way.stations[i]._id, way.stations[i].city, fromField, inputField);
         }
     }
     public void HideElements(GameObject[] notHide) {

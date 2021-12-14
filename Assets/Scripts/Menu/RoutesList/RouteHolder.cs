@@ -1,10 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TrainicketJSONStorage.FoundRoutes;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
-public class WayHolder : MonoBehaviour
+public class RouteHolder : MonoBehaviour
 {
+    public Route myRoute;
+
+    [SerializeField] TextMeshProUGUI fromLable;
+    [SerializeField] TextMeshProUGUI whereLable;
+    [SerializeField] TextMeshProUGUI dateFrom;
+    [SerializeField] TextMeshProUGUI timeFrom;
+    [SerializeField] TextMeshProUGUI dateWhere;
+    [SerializeField] TextMeshProUGUI timeWhere;
+    [SerializeField] TextMeshProUGUI totalTime;
+
     [SerializeField] Button expandBtn;
     [SerializeField] GameObject collapseIcon;
     [SerializeField] GameObject expandIcon;
@@ -12,6 +25,22 @@ public class WayHolder : MonoBehaviour
     bool collapse = false;
 
     float maxHeight = 600f;
+
+    public void InitializeRoute(Route route) {
+        myRoute = route;
+
+        fromLable.text = myRoute.from.name;
+        whereLable.text = myRoute.to.name;
+        var dateTime = DateTime.Parse(myRoute.departureTime.ToString());
+        dateFrom.text = DateTime.Parse(myRoute.departureTime).ToString("dddd") + " " + DateTime.Parse(myRoute.departureTime).ToString("dd.MM.yyyy");
+        dateWhere.text = DateTime.Parse(myRoute.arrivalTime).ToString("dddd") + " " + DateTime.Parse(myRoute.arrivalTime).ToString("dd.MM.yyyy");
+
+        timeFrom.text = DateTime.Parse(myRoute.departureTime).ToString("hh:mm tt");
+        timeWhere.text = DateTime.Parse(myRoute.arrivalTime).ToString("hh:mm tt");
+
+        totalTime.text = myRoute.time;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +71,7 @@ public class WayHolder : MonoBehaviour
     }
 
     void CreateAndFill() {
-        detailInfo = Instantiate(TicketsListMenu.i.detailInfoPrefab, TicketsListMenu.i.wayHolder).GetComponent<RectTransform>();
+        detailInfo = Instantiate(RoutesListMenu.i.detailInfoPrefab, RoutesListMenu.i.wayHolder).GetComponent<RectTransform>();
         detailInfo.transform.SetSiblingIndex(transform.GetSiblingIndex() + 1);
         //Fill info
     }

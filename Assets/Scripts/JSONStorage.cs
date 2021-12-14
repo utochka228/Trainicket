@@ -48,6 +48,48 @@ namespace TrainicketJSONStorage
             public double latitude;
         }
     }
+    namespace FoundRoutes
+    {
+        [Serializable]
+        public struct FoundRoutes
+        {
+            public bool success;
+            public Route[] routes;
+        }
+        [Serializable]
+        public struct Route
+        {
+            public string _id;
+            public Way from;
+            public Way to;
+            public TrainDetailInfo.Train train;
+            [SerializeField]
+            public string departureTime;
+            [SerializeField]
+            public string arrivalTime;
+            public TimeRoute route;
+            public string time;
+        }
+        [Serializable]
+        public struct Way
+        {
+            public StationsSearcher.Location location;
+            public string _id;
+            public string name;
+        }
+        [Serializable]
+        public struct TimeRoute
+        {
+            public StationTime from;
+            public StationTime to;
+        }
+        [Serializable]
+        public struct StationTime
+        {
+            public string departureTime;
+            public string arrivalTime;
+        }
+    }
     namespace RegisterBody
     {
         [Serializable]

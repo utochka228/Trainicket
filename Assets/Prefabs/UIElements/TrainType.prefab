@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 3338682916748459386}
   - component: {fileID: 6986601664017696013}
   - component: {fileID: 6940503483068246052}
+  - component: {fileID: 8481851869302589681}
   m_Layer: 5
   m_Name: TrainType
   m_TagString: Untagged
@@ -256,6 +257,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8481851869302589681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627504771418680990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6243a82cbe2af43ac932442437451a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeName: {fileID: 0}
+  freeSeatsLable: {fileID: 0}
 --- !u!1 &8272149536361446345
 GameObject:
   m_ObjectHideFlags: 0

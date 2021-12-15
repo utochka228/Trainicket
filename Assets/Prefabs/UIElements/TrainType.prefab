@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2175765333873014510}
   - component: {fileID: 4784055784135598193}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Seats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3338682916748459386
 CanvasRenderer:
@@ -256,7 +256,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6986601664017696013}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8481851869302589681}
+        m_TargetAssemblyTypeName: VanTypeButton, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8481851869302589681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6243a82cbe2af43ac932442437451a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeName: {fileID: 0}
-  freeSeatsLable: {fileID: 0}
+  typeName: {fileID: 2744269352195460097}
+  seatsLable: {fileID: 4784055784135598193}
 --- !u!1 &8272149536361446345
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +295,7 @@ GameObject:
   - component: {fileID: 2288978201651551954}
   - component: {fileID: 2744269352195460097}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

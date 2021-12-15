@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using static VanTypeButton;
 
 public class RouteHolder : MonoBehaviour
 {
@@ -21,10 +22,12 @@ public class RouteHolder : MonoBehaviour
     [SerializeField] Button expandBtn;
     [SerializeField] GameObject collapseIcon;
     [SerializeField] GameObject expandIcon;
+
+    [SerializeField] VanTypeButton vanClassBtn;
     RectTransform detailInfo;
     bool collapse = false;
 
-    float maxHeight = 600f;
+    float maxHeight = 0f;
 
     public void InitializeRoute(Route route) {
         myRoute = route;
@@ -39,12 +42,12 @@ public class RouteHolder : MonoBehaviour
         timeWhere.text = DateTime.Parse(myRoute.arrivalTime).ToString("hh:mm tt");
 
         totalTime.text = myRoute.time;
-    }
 
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
-        //Calculate maxHeight!
     }
 
     // Update is called once per frame
@@ -73,9 +76,40 @@ public class RouteHolder : MonoBehaviour
     void CreateAndFill() {
         detailInfo = Instantiate(RoutesListMenu.i.detailInfoPrefab, RoutesListMenu.i.wayHolder).GetComponent<RectTransform>();
         detailInfo.transform.SetSiblingIndex(transform.GetSiblingIndex() + 1);
-        //Fill info
+        //Calculate maxHeight!
+        float oneButtonHeight = vanClassBtn.GetComponent<RectTransform>().sizeDelta.y;
+        float spaceBetween = detailInfo.GetComponent<VerticalLayoutGroup>().spacing;
+        maxHeight = 100f;
+        for (int i = 0; i < myRoute.train.seats.Length; i++) {
+            int thisClassSeats = myRoute.train.seats[i];
+            if (thisClassSeats == 0)
+                continue;
+            maxHeight += oneButtonHeight + spaceBetween;
+            AddVansClass(i, "free/seats:" + myRoute.train.freeSeats[i] + "/" + myRoute.train.seats[i]);
+        }
     }
-    
+    void AddVansClass(int vanClass, string seatsInfo) {
+        var vanType = Instantiate(vanClassBtn, detailInfo.transform).GetComponent<VanTypeButton>();
+        VanTypeData vanTypeData;
+        vanTypeData.typeName = "none";
+        vanTypeData.seatsInfo = seatsInfo;
+        vanTypeData.trainId = myRoute.train._id;
+        switch (vanClass) {
+            case 0:
+                vanTypeData.typeName = "first";
+                break;
+            case 1:
+                vanTypeData.typeName = "second";
+                break;
+            case 2:
+                vanTypeData.typeName = "chairFirst";
+                break;
+            case 3:
+                vanTypeData.typeName = "chairSecond";
+                break;
+        }
+        vanType.SetInfo(vanTypeData, myRoute);
+    }
     float lerpDuration = 0.2f;
     float valueToLerp;
     IEnumerator Lerp(float startValue, float endValue, bool destroyAfter = false) {

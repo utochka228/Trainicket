@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4684233754945029210}
   - component: {fileID: 364362879423274751}
   - component: {fileID: 5492596712210477541}
+  - component: {fileID: 529022089631110265}
   m_Layer: 5
   m_Name: Seat
   m_TagString: Untagged
@@ -124,6 +125,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &529022089631110265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523623873160804075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0d3ddf56e0faa47a1ab105ed194f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: {fileID: 6214735469173345563}
+  up: {fileID: 1747471347030523889}
+  down: {fileID: 3513267289469816117}
+  selector: {fileID: 6892509725054437132}
+  button: {fileID: 5492596712210477541}
 --- !u!1 &1747471347030523889
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +229,7 @@ GameObject:
   - component: {fileID: 9209877140418365086}
   - component: {fileID: 6214735469173345563}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -62,7 +62,7 @@ namespace TrainicketJSONStorage
             public string _id;
             public Way from;
             public Way to;
-            public TrainDetailInfo.Train train;
+            public Train train;
             [SerializeField]
             public string departureTime;
             [SerializeField]
@@ -88,6 +88,15 @@ namespace TrainicketJSONStorage
         {
             public string departureTime;
             public string arrivalTime;
+        }
+        [Serializable]
+        public struct Train
+        {
+            public string _id;
+            public string name;
+            public string type;
+            public int[] seats;
+            public int[] freeSeats;
         }
     }
     namespace RegisterBody
@@ -124,9 +133,10 @@ namespace TrainicketJSONStorage
     namespace TrainDetailInfo
     {
         [Serializable]
-        public struct TrainInfo
+        public struct TrainDetailInfo
         {
             public bool success;
+            public Train train;
         }
         [Serializable]
         public struct Train
@@ -135,15 +145,16 @@ namespace TrainicketJSONStorage
             public string name;
             public string type;
             public Van[] vans;
-            public VanClassSeats seats;
-            public Seat[] freeSeats;
+            public int[] seats;
+            public int[] freeSeats;
         }
         [Serializable]
         public struct Van
         {
             public Seat[] seats;
             public string _id;
-            public string VanClass;
+            public string vanClass;
+            public int number;
         }
         [Serializable]
         public struct Seat
@@ -151,14 +162,6 @@ namespace TrainicketJSONStorage
             public bool occupied;
             public string _id;
             public int number;
-        }
-        [Serializable]
-        public struct VanClassSeats
-        {
-            public int zero;
-            public int first;
-            public int second;
-            public int third;
         }
     }
 }

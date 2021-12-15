@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.7
-  m_fontSizeBase: 36.7
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -301,8 +301,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.3
-  m_fontSizeBase: 33.3
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -673,8 +673,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.5
-  m_fontSizeBase: 32.5
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -807,8 +807,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.5
-  m_fontSizeBase: 32.5
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -941,8 +941,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.97
-  m_fontSizeBase: 43.97
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1347,14 +1347,17 @@ MonoBehaviour:
       _id: 
       name: 
       type: 
-      vans: []
-      seats:
-        zero: 0
-        first: 0
-        second: 0
-        third: 0
-      freeSeats: []
-    route: {}
+      seats: 00000000000000000000000000000000
+      freeSeats: 
+    departureTime: 
+    arrivalTime: 
+    route:
+      from:
+        departureTime: 
+        arrivalTime: 
+      to:
+        departureTime: 
+        arrivalTime: 
     time: 
   fromLable: {fileID: 1149325619665684432}
   whereLable: {fileID: 4515525197440138435}
@@ -1366,6 +1369,7 @@ MonoBehaviour:
   expandBtn: {fileID: 7997464742433660548}
   collapseIcon: {fileID: 8920728240448759079}
   expandIcon: {fileID: 627516524040483601}
+  vanClassBtn: {fileID: 8481851869302589681, guid: 127b7122d0a1be343955643ba4aec99c, type: 3}
 --- !u!1 &6651135295135940494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,8 +1462,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.97
-  m_fontSizeBase: 43.97
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1592,8 +1596,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.7
-  m_fontSizeBase: 36.7
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

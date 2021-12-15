@@ -164,6 +164,28 @@ namespace TrainicketJSONStorage
             public int number;
         }
     }
+    namespace PopularWays
+    {
+        [Serializable]
+        public struct PopularWays
+        {
+            public bool success;
+            public Station[] stations;
+        }
+        [Serializable]
+        public struct Station
+        {
+            public string _id;
+            public Way from;
+            public Way to;
+        }
+        [Serializable]
+        public struct Way
+        {
+            public string _id;
+            public string name;
+        }
+    }
 }
 public delegate void Response(string json, long responseCode);
 

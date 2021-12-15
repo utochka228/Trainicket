@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TrainicketJSONStorage.TrainDetailInfo;
 using UnityEngine;
 
@@ -14,14 +15,27 @@ public class VanHandler : MonoBehaviour
     void SetSeatInfo() {
         for (int i = 0; i < vanSeats.Count; i++) {
             var seat = vanSeats[i];
-            seat.number.text = i.ToString();
+            seat.ResetSeat();
+
+            seat.SeatNumber = i;
+            seat.VanNumber = currentVan.number;
+
             if(i % 2 == 0) {
                 seat.up.SetActive(true);
             } else {
                 seat.down.SetActive(true);
             }
-            if (currentVan.seats[i].occupied)
+            if (currentVan.seats[i].occupied) {
                 seat.button.interactable = false;
+                seat.selector.SetActive(false);
+            }
+            else
+                seat.button.interactable = true;
+            
+            //Enable selector if this seat was selected prev
+            if(TrainInfoMenu.i.selectedSeats.Any(x => x.seat == seat && 
+            x.selectedSeat.VanNumber == currentVan.number))
+                seat.SelectSeat();
         }
     }
 

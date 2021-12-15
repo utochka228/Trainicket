@@ -124,7 +124,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 364362879423274751}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 529022089631110265}
+        m_TargetAssemblyTypeName: Seat, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &529022089631110265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0d3ddf56e0faa47a1ab105ed194f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalColor: {r: 0.98039216, g: 0.6627451, b: 0.08627451, a: 1}
+  selectedColor: {r: 1, g: 0, b: 0, a: 1}
   number: {fileID: 6214735469173345563}
   up: {fileID: 1747471347030523889}
   down: {fileID: 3513267289469816117}

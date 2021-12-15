@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 3057357265420884048}
   - component: {fileID: 9016887533560784346}
   - component: {fileID: 3660861986718799428}
+  - component: {fileID: 8916170269566671130}
   m_Layer: 5
   m_Name: PopularWay
   m_TagString: Untagged
@@ -271,7 +272,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5873486341304731592}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8916170269566671130}
+        m_TargetAssemblyTypeName: PopularWay, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9016887533560784346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,3 +325,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8916170269566671130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351360037262774645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8377e63360121ec439fac14ea940d433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromWhereTxt: {fileID: 6294133002379075019}
+  targetSearch:
+    from: 
+    fromName: 
+    where: 
+    whereName: 

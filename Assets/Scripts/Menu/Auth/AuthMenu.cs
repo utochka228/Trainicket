@@ -23,6 +23,7 @@ public class AuthMenu : MenuItem<AuthMenu>
     }
     public void SaveAuthShowing(int value) {
         PlayerPrefs.SetInt("showAuth", value);
+        Close();
         SearchMenu.Show();
     }
     public void SkipAuthStep() {
@@ -86,9 +87,10 @@ public class AuthMenu : MenuItem<AuthMenu>
             if (response.newUser) {
                 UIMenuManager.Instance.accesstoken = response.accessToken;
                 RegisterMenu.Show();
-            }
-            else
+            } else {
+                Close();
                 SearchMenu.Show();
+            }
         }
     }
     public override void OnBackPressed() {

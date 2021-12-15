@@ -13,18 +13,19 @@ public class Searcher : MonoBehaviour
     [SerializeField] Transform whereHolder;
     [SerializeField] SearchedDropdown dropdown;
 
-    [SerializeField] List<GameObject> toHide = new List<GameObject>();
-
     bool canAddChildren;
     public void SetAddingChildrenState(bool state) => canAddChildren = state;
 
     public void OnSymbolsInputFrom(string from) {
+        if (string.IsNullOrEmpty(from)) {
+            SearchMenu.i.targetSearch.from = "";
+            SearchMenu.i.targetSearch.fromName = "";
+        }
         if (canAddChildren == false)
             return;
         DestroyDropdowns();
-        if (from.Length >= 3) {
+        if (from.Length >= 2) {
             //Hide elements
-            HideElements(new GameObject[] { fromField.gameObject});
             var url = "http://18.117.102.247:5000/api/stations/search?search=" + from;
             StartCoroutine(GET(url, (json, responseCode) => {
                 var way = JsonUtility.FromJson<WaySearched>(json);
@@ -37,12 +38,15 @@ public class Searcher : MonoBehaviour
         }
     }
     public void OnSymbolsInputWhere(string where) {
+        if (string.IsNullOrEmpty(where)) {
+            SearchMenu.i.targetSearch.where = "";
+            SearchMenu.i.targetSearch.whereName = "";
+        }
         if (canAddChildren == false)
             return;
         DestroyDropdowns();
-        if (where.Length >= 3) {
+        if (where.Length >= 2) {
             //Hide elements
-            HideElements(new GameObject[] { whereField.gameObject });
             var url = "http://18.117.102.247:5000/api/stations/search?search=" + where;
             StartCoroutine(GET(url, (json, responseCode) => {
                 var way = JsonUtility.FromJson<WaySearched>(json);
@@ -59,19 +63,6 @@ public class Searcher : MonoBehaviour
         for (int i = 0; i < count; i++) {
             var _dropDown = Instantiate(dropdown, holder).GetComponent<SearchedDropdown>();
             _dropDown.Initialize(way.stations[i]._id, way.stations[i].city, fromField, inputField);
-        }
-    }
-    public void HideElements(GameObject[] notHide) {
-        foreach (var element in toHide) {
-            if (notHide.Contains(element))
-                continue;
-
-            element.SetActive(false);
-        }
-    }
-    public void ShowHiddenElements() {
-        foreach (var element in toHide) {
-            element.SetActive(true);
         }
     }
     public void DestroyDropdowns() {

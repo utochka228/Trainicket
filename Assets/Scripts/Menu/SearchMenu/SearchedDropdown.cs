@@ -26,11 +26,11 @@ public class SearchedDropdown : MonoBehaviour
         wasPressed = true;
 
         if (from) {
-            SearchMenu.targetSearch.from = id;
-            SearchMenu.targetSearch.fromName = city;
+            SearchMenu.i.targetSearch.from = id;
+            SearchMenu.i.targetSearch.fromName = city;
         } else {
-            SearchMenu.targetSearch.where = id;
-            SearchMenu.targetSearch.whereName = city;
+            SearchMenu.i.targetSearch.where = id;
+            SearchMenu.i.targetSearch.whereName = city;
         }
         myInputField.text = city;
         //SearchMenu.i.searcher.DestroyDropdowns();

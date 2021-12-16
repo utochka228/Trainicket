@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using TrainicketJSONStorage.TrainDetailInfo;
 
 public class Seat : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Seat : MonoBehaviour
             vanNumber = value;
         }
     }
+    public Van van;
 
     public GameObject up;
     public GameObject down;
@@ -30,7 +32,7 @@ public class Seat : MonoBehaviour
     protected bool selected = false;
     public virtual void OnPressed() {
         selected = !selected;
-        TrainInfoMenu.i.SeatPressed(this, selected, SeatNumber, up.activeSelf);
+        TrainInfoMenu.i.SeatPressed(this, selected, van, up.activeSelf);
         if (selected)
             selector.SetActive(true);
         else

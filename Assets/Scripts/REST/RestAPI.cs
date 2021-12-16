@@ -8,8 +8,10 @@ public class RestAPI : MonoBehaviour
     public static IEnumerator POST(string url, string body, Response resultAction, HeaderRequest[] headers) {
         LoadingMenu.Show();
         var request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(body);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        if (string.IsNullOrEmpty(body) == false) {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(body);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        }
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
         if (headers != null)

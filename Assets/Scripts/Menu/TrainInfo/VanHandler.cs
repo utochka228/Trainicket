@@ -19,6 +19,7 @@ public class VanHandler : MonoBehaviour
 
             seat.SeatNumber = i;
             seat.VanNumber = currentVan.number;
+            seat.van = currentVan;
 
             if(i % 2 == 0) {
                 seat.up.SetActive(true);

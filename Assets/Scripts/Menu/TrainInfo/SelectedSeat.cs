@@ -4,7 +4,6 @@ using UnityEngine;
 public class SelectedSeat : Seat
 {
     [SerializeField] TextMeshProUGUI vanNumberTxt;
-    
     public override int VanNumber { 
         get => base.VanNumber; 
         set { 

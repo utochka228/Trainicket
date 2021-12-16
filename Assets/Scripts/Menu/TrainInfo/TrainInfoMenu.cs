@@ -6,6 +6,7 @@ using TrainicketJSONStorage.TrainDetailInfo;
 using TrainicketJSONStorage.FoundRoutes;
 using System;
 using System.Linq;
+using TrainicketJSONStorage.SelectedForBooking;
 
 public class TrainInfoMenu : MenuItem<TrainInfoMenu>
 {
@@ -63,6 +64,18 @@ public class TrainInfoMenu : MenuItem<TrainInfoMenu>
         from.text = trainRoute.from.name;
         where.text = trainRoute.to.name;
     }
+    public void OnContinuePressed() {
+        UserBookingData[] userBookDatas = new UserBookingData[selectedSeats.Count];
+        for (int i = 0; i < userBookDatas.Length; i++) {
+            var userBookData = userBookDatas[i];
+            userBookData.route = trainRoute._id;
+            userBookData.from = trainRoute.from._id;
+            userBookData.to = trainRoute.to._id;
+            userBookData.van = selectedSeats[i].selectedSeat.van._id;
+            userBookData.seat = selectedSeats[i].selectedSeat.van.seats[selectedSeats[i].selectedSeat.SeatNumber]._id;
+        }
+        BookingMenu.ShowBookingMenu(userBookDatas);
+    }
     #region Van_setup
 
     void SetVans() {
@@ -99,17 +112,18 @@ public class TrainInfoMenu : MenuItem<TrainInfoMenu>
     }
     #endregion
     #region Seats_setup
-    public void SeatPressed(Seat seat, bool selected, int number, bool isUp) {
+    public void SeatPressed(Seat seat, bool selected, Van van, bool isUp) {
         if (selected) {
-            SpawnToSelectedList(seat, number, isUp);
+            SpawnToSelectedList(seat, van, isUp);
         } else if(selectedSeats.Any(x => x.selectedSeat.VanNumber == seat.VanNumber)) {
             RemoveSelectedSeat(selectedSeats.Single(x => x.seat == seat && x.selectedSeat.VanNumber == seat.VanNumber).selectedSeat);
         }
     }
-    void SpawnToSelectedList(Seat seat, int number, bool isUp) {
+    void SpawnToSelectedList(Seat seat, Van van, bool isUp) {
         var spawnedSeat = Instantiate(selectedSeat, selectedSeatsHolder);
         selectedSeats.Add(new UserSelectedSeat(seat, spawnedSeat));
-        spawnedSeat.SeatNumber = number;
+        spawnedSeat.SeatNumber = seat.SeatNumber;
+        spawnedSeat.van = van;
         spawnedSeat.VanNumber = seat.VanNumber;
         if (isUp)
             spawnedSeat.up.SetActive(true);

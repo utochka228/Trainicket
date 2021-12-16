@@ -85,7 +85,7 @@ public class AuthMenu : MenuItem<AuthMenu>
         if(responseCode == 200) {
             var response = JsonUtility.FromJson<CodeCheckResponse>(json);
             if (response.newUser) {
-                UIMenuManager.Instance.accesstoken = response.accessToken;
+                AccountMenu.accessToken = response.accessToken;
                 RegisterMenu.Show();
             } else {
                 Close();

@@ -8,6 +8,7 @@ public class InputFieldHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI lable;
     [SerializeField] RectTransform parentToReplacing;
     [SerializeField] bool removeOnPressingBack;
+    public bool siblingIndexImportant;
     public UnityEvent OnRemoveFocusZoneActions;
 
     bool replaced;
@@ -17,7 +18,12 @@ public class InputFieldHandler : MonoBehaviour
         if (replaced)
             return;
         RectTransform target = parentToReplacing == null ? GetComponent<RectTransform>() : parentToReplacing;
-        InputSelector.ShowFocusZone(target, lable);
+
+        int siblingIndex = 0;
+        if (siblingIndexImportant)
+            siblingIndex =target.transform.GetSiblingIndex();
+
+        InputSelector.ShowFocusZone(target, lable, siblingIndex);
         InputSelector.i.removeOnPressingBack = removeOnPressingBack;
         replaced = true;
     }

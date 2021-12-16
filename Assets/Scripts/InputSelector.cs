@@ -57,7 +57,7 @@ public class InputSelector : MenuItem<InputSelector>
         raycastBlocker.blocksRaycasts = true;
         LerpAnchoredStartPos(target.anchoredPosition, startPosInThisParent);
         yield return new WaitUntil(() => xBackDone && yBackDone);
-        target.transform.GetComponent<InputFieldHandler>().OnRemoveFocusZoneActions?.Invoke();
+        target.transform.GetComponentInChildren<InputFieldHandler>().OnRemoveFocusZoneActions?.Invoke();
         yield return StartCoroutine(Utils.Lerp(0.9f, 0f, 0.1f, (lerpValue, isEnd) => {
             background.ChangeAlpha(lerpValue);
         }));
@@ -66,6 +66,7 @@ public class InputSelector : MenuItem<InputSelector>
             fieldLable.color = newColor;
         }));
         target.transform.SetParent(previousParent);
+        target.transform.SetSiblingIndex(sibIndex);
         lableOrigin?.SetActive(true);
         Close();
     }
@@ -80,10 +81,12 @@ public class InputSelector : MenuItem<InputSelector>
     static RectTransform target;
     static Vector2 startPosInThisParent;
     static GameObject lableOrigin;
-    public static void ShowFocusZone(RectTransform targetInput, TextMeshProUGUI lable) {
+    static int sibIndex;
+    public static void ShowFocusZone(RectTransform targetInput, TextMeshProUGUI lable, int siblingIndex = 0) {
         Show();
         target = targetInput;
         previousParent = targetInput.transform.parent;
+        sibIndex = siblingIndex;
         targetInput.transform.SetParent(i.holder);
         startPosInThisParent = target.anchoredPosition;
         if (lable != null) {

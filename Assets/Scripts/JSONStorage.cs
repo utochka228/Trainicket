@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TrainicketJSONStorage.RegisterBody;
+using TrainicketJSONStorage.SelectedForBooking;
 using UnityEngine;
 namespace TrainicketJSONStorage
 {
@@ -22,6 +24,27 @@ namespace TrainicketJSONStorage
         {
             public bool success;
             public string message;
+        }
+    }
+    namespace UserProfileData
+    {
+        [Serializable]
+        public struct UserResponseProfile
+        {
+            public bool success;
+            public UserProfile profile;
+        }
+        [Serializable]
+        public struct UserProfile
+        {
+            public string[] following;
+            public string[] tickets;
+            public string _id;
+            public string userName;
+            public string firstName;
+            public string lastName;
+            public string email;
+            public RegisterBody.Privilege privilege;
         }
     }
     namespace StationsSearcher
@@ -184,6 +207,45 @@ namespace TrainicketJSONStorage
         {
             public string _id;
             public string name;
+        }
+    }
+    namespace SelectedForBooking
+    {
+        [Serializable]
+        public struct UserBookingData
+        {
+            public string route;
+            public string from;
+            public string to;
+            public string van;
+            public string seat;
+        }
+    }
+    namespace BookingInfo
+    {
+        [Serializable]
+        public struct BookData
+        {
+            public UserBookingData userBookingData;
+            public string firstName;
+            public string lastName;
+            public string email;
+            public Service[] services;
+            public Privilege privilege;
+        }
+        [Serializable]
+        public struct Service
+        {
+            public string service;
+            public int amount;
+        }
+        [Serializable]
+        public struct BookResponse
+        {
+            public bool success;
+            public string message;
+            public string accessToken;
+            public string id;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using TrainicketJSONStorage.UserProfileData;
 using UnityEngine;
 
 public class UIMenuManager : MonoBehaviour
@@ -19,7 +20,8 @@ public class UIMenuManager : MonoBehaviour
     public RoutesListMenu ticketsList;
     public TrainInfoMenu trainInfoMenu;
     public BookingMenu bookingMenu;
-    public string accesstoken;
+    public AccountMenu accountMenu;
+    public PaymentsMenu paymentsMenu;
 
     List<Menu> visualHelpers = new List<Menu>();
     void Awake()
@@ -39,7 +41,11 @@ public class UIMenuManager : MonoBehaviour
             if (string.IsNullOrEmpty(PlayerPrefs.GetString("userToken")))
                 AuthMenu.Show();
             else {
-                accesstoken = PlayerPrefs.GetString("userToken");
+                AccountMenu.accessToken = PlayerPrefs.GetString("userToken");
+                StartCoroutine(RestAPI.GET("http://18.117.102.247:5000/api/user", (json, responseCode) => {
+                    var response = JsonUtility.FromJson<UserResponseProfile>(json);
+                    AccountMenu.SetRegisteredData(response);
+                }, new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + AccountMenu.accessToken) }));
                 SearchMenu.Show();
             }
         } 

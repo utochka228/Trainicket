@@ -23,23 +23,23 @@ public class RegisterMenu : MenuItem<RegisterMenu>
     public TMP_InputField studentNumber;
     public void SendRegisteredValues() {
         var body = "";
-        Privilege priv = new Privilege("", "");
-        if (privilege.value == 1) {
-            priv = new Privilege("child", ChildDate.Date.ToString("yy.MM.dd"));
-        }
-        if (privilege.value == 2) {
-            priv = new Privilege("student", "BK" + UnityEngine.Random.Range(10000000, 100000000));
-        }
+
+        var studentData = "BK" + UnityEngine.Random.Range(10000000, 100000000);
+        var childData = ChildDate.Date.ToString("yy.MM.dd");
+        Privilege priv = GetPrivilegeByIndex(privilege.value, childData, studentData);
+        
         RegisteredData registeredData = new RegisteredData($"trainicket user({UnityEngine.Random.Range(0, 99999f)})", email.text, firstName.text, secondName.text, priv);
+        AccountMenu.SetRegisteredData(registeredData);
+
         body = JsonUtility.ToJson(registeredData);
 
         if(privilege.value == 0) {
             var mask = new Regex(@",""privilege"".*?(?=})}");
             body = mask.Replace(body, "");
         }
-        string headerValue = "Bearer " + UIMenuManager.Instance.accesstoken;
+        string headerValue = "Bearer " + AccountMenu.accessToken;
         Debug.Log("VALUE:" + headerValue);
-        HeaderRequest[] headers = new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + UIMenuManager.Instance.accesstoken) };
+        HeaderRequest[] headers = new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + AccountMenu.accessToken) };
         StartCoroutine(POST("http://18.117.102.247:5000/api/user/register", body, GetResponse, headers));
     }
     void GetResponse(string json, long responseCode) {
@@ -83,5 +83,17 @@ public class RegisterMenu : MenuItem<RegisterMenu>
             default:
                 break;
         }
+    }
+    public static Privilege GetPrivilegeByIndex(int index, string dateChild, string dateStudent) {
+        Privilege priv = new Privilege("", "");
+        if (index == 1) {
+            priv.type = "child";
+            priv.data = dateChild;
+        }
+        if (index == 2) {
+            priv.type = "student";
+            priv.data = dateStudent;
+        }
+        return priv;
     }
 }

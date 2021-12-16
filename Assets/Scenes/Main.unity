@@ -327,7 +327,8 @@ MonoBehaviour:
   ticketsList: {fileID: 1482776247613922104, guid: 4af9ded4ce5c88c41bf9a97cc7ddfd36, type: 3}
   trainInfoMenu: {fileID: 6929917728556580551, guid: 111fb27f5790cde408511450bc262c00, type: 3}
   bookingMenu: {fileID: 7996155668321113431, guid: 5a78fa42e977b6144bcff40648e48149, type: 3}
-  accesstoken: 
+  accountMenu: {fileID: 3889633877059821290, guid: 8d4d8a6caad26a24da302d1139e55ca7, type: 3}
+  paymentsMenu: {fileID: 1014012656983347119, guid: f22f51c6e7de2ac41813fe2d7e264514, type: 3}
 --- !u!114 &1365513354
 MonoBehaviour:
   m_ObjectHideFlags: 0

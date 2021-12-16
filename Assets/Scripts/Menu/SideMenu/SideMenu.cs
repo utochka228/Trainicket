@@ -45,4 +45,8 @@ public class SideMenu : MenuItem<SideMenu>
     }
     
     public void HideMenu() => ShowMenu(true);
+
+    public void ShowTicketsMenu() {
+
+    }
 }

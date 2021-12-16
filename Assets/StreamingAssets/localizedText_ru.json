@@ -39,6 +39,142 @@
     {
       "key": "backbtn_lable",
       "value": "Назад"
+    },
+    {
+      "key": "date_lable",
+      "value": "Выберите дату"
+    },
+    {
+      "key": "help_lable",
+      "value": "Нужна помощь?"
+    },
+    {
+      "key": "foundtickets_lable",
+      "value": "Найденные билеты"
+    },
+    {
+      "key": "fromwhere_lable",
+      "value": "Откуда/Куда"
+    },
+    {
+      "key": "date_table_lable",
+      "value": "Дата"
+    },
+    {
+      "key": "time_lable",
+      "value": "Время"
+    },
+    {
+      "key": "totaltime_lable",
+      "value": "Общее время"
+    },
+    {
+      "key": "details_lable",
+      "value": "Детали"
+    },
+    {
+      "key": "traininfo_lable",
+      "value": "Информация о поезде"
+    },
+    {
+      "key": "vantype_lable",
+      "value": "Тип вагона"
+    },
+    {
+      "key": "filltickets_lable",
+      "value": "Заполните билет"
+    },
+    {
+      "key": "fillRegistered_lable",
+      "value": "Заполнить на основне зарегестрированных даных"
+    },
+    {
+      "key": "bedclothes_lable",
+      "value": "Постель"
+    },
+    {
+      "key": "drinks_lable",
+      "value": "Напитки"
+    },
+    {
+      "key": "infopayments_lable",
+      "value": "Введите Вашу информацию о банковской карточке"
+    },
+    {
+      "key": "successpaid_lable",
+      "value": "Операция успешна"
+    },
+    {
+      "key": "userTickets_lable",
+      "value": "Билеты пользователя"
+    },
+    {
+      "key": "active_lable",
+      "value": "Активные"
+    },
+    {
+      "key": "History_lable",
+      "value": "История"
+    },
+    {
+      "key": "search_lable",
+      "value": "Поиск"
+    },
+    {
+      "key": "student_lable",
+      "value": "Студентский"
+    },
+    {
+      "key": "additional_lable",
+      "value": "Дополнительно"
+    },
+    {
+      "key": "next_lable",
+      "value": "Далее"
+    },
+    {
+      "key": "apply_lable",
+      "value": "Применить"
+    },
+    {
+      "key": "waiting_lable",
+      "value": "Подождите, пожалуйста.."
+    },
+    {
+      "key": "pay_lable",
+      "value": "Оплатить билеты.."
+    },
+    {
+      "key": "birthday_lable",
+      "value": "День рождения.."
+    },
+    {
+      "key": "fieldsimportant_lable",
+      "value": "Все поля обизательны.."
+    },
+    {
+      "key": "from_lable",
+      "value": "Откуда"
+    },
+    {
+      "key": "where_lable",
+      "value": "Куда"
+    },
+    {
+      "key": "authnotific_lable",
+      "value": "Показывать опять меню регистрации?"
+    },
+    {
+      "key": "authnotifdesc_lable",
+      "value": "Вы всегда можете включить эту фичу в настройках"
+    },
+    {
+      "key": "yes_lable",
+      "value": "Да"
+    },
+    {
+      "key": "no_lable",
+      "value": "Нет"
     }
   ]
 }

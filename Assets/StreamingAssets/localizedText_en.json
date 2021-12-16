@@ -39,6 +39,142 @@
     {
       "key": "backbtn_lable",
       "value": "Back"
+    },
+    {
+      "key": "date_lable",
+      "value": "Select date"
+    },
+    {
+      "key": "help_lable",
+      "value": "Need help?"
+    },
+    {
+      "key": "foundtickets_lable",
+      "value": "Found tickets"
+    },
+    {
+      "key": "fromwhere_lable",
+      "value": "From/Where"
+    },
+    {
+      "key": "date_table_lable",
+      "value": "Date"
+    },
+    {
+      "key": "time_lable",
+      "value": "Time"
+    },
+    {
+      "key": "totaltime_lable",
+      "value": "Total"
+    },
+    {
+      "key": "details_lable",
+      "value": "Details"
+    },
+    {
+      "key": "traininfo_lable",
+      "value": "Train information"
+    },
+    {
+      "key": "vantype_lable",
+      "value": "Van type"
+    },
+    {
+      "key": "filltickets_lable",
+      "value": "Fill your tickets"
+    },
+    {
+      "key": "fillRegistered_lable",
+      "value": "Fill your account values"
+    },
+    {
+      "key": "bedclothes_lable",
+      "value": "Bedclothes"
+    },
+    {
+      "key": "drinks_lable",
+      "value": "Drinks"
+    },
+    {
+      "key": "infopayments_lable",
+      "value": "Input your credit card information"
+    },
+    {
+      "key": "successpaid_lable",
+      "value": "Operation successful"
+    },
+    {
+      "key": "userTickets_lable",
+      "value": "User tickets"
+    },
+    {
+      "key": "active_lable",
+      "value": "Active"
+    },
+    {
+      "key": "History_lable",
+      "value": "History"
+    },
+    {
+      "key": "search_lable",
+      "value": "Search"
+    },
+    {
+      "key": "student_lable",
+      "value": "Student nubmer"
+    },
+    {
+      "key": "additional_lable",
+      "value": "Additional"
+    },
+    {
+      "key": "next_lable",
+      "value": "Next"
+    },
+    {
+      "key": "apply_lable",
+      "value": "Apply"
+    },
+    {
+      "key": "waiting_lable",
+      "value": "Wait, please.."
+    },
+    {
+      "key": "pay_lable",
+      "value": "Pay tickets.."
+    },
+    {
+      "key": "birthday_lable",
+      "value": "Birthday.."
+    },
+    {
+      "key": "fieldsimportant_lable",
+      "value": "All fields are important.."
+    },
+    {
+      "key": "from_lable",
+      "value": "From"
+    },
+    {
+      "key": "where_lable",
+      "value": "Where"
+    },
+    {
+      "key": "authnotific_lable",
+      "value": "Show auth menu?"
+    },
+    {
+      "key": "authnotifdesc_lable",
+      "value": "You can always register in your account settings"
+    },
+    {
+      "key": "yes_lable",
+      "value": "Yes"
+    },
+    {
+      "key": "no_lable",
+      "value": "No"
     }
   ]
 }

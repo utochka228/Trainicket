@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TrainicketJSONStorage.BookingInfo;
 using TrainicketJSONStorage.RegisterBody;
-using TrainicketJSONStorage.SelectedForBooking;
+using TrainicketJSONStorage.TrainDetailInfo;
 using UnityEngine;
 namespace TrainicketJSONStorage
 {
@@ -226,7 +227,11 @@ namespace TrainicketJSONStorage
         [Serializable]
         public struct BookData
         {
-            public UserBookingData userBookingData;
+            public string route;
+            public string from;
+            public string to;
+            public string van;
+            public string seat;
             public string firstName;
             public string lastName;
             public string email;
@@ -246,6 +251,44 @@ namespace TrainicketJSONStorage
             public string message;
             public string accessToken;
             public string id;
+        }
+    }
+    namespace GettingTickets
+    {
+        [Serializable]
+        public struct UserTicketsResponse
+        {
+            public bool success;
+            public UserTickets userTickets;
+        }
+        [Serializable]
+        public struct UserTickets
+        {
+            public UserTicket[] upcoming;
+            public UserTicket[] past;
+        }
+        [Serializable]
+        public struct UserTicket
+        {
+            public string status;
+            public string _id;
+            public Way from;
+            public Way to;
+            public Van van;
+            public Service[] services;
+            public float price;
+        }
+        [Serializable]
+        public struct Way
+        {
+            public string arrivalTime;
+            public string departureTime;
+            public Station station;
+        }
+        [Serializable]
+        public struct Station {
+            public string _id;
+            public string name;
         }
     }
 }

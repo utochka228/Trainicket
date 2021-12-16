@@ -40,7 +40,9 @@ public class AuthMenu : MenuItem<AuthMenu>
     }
     public void SendPhone() {
         inputPhoneNumber = phoneField.text;
-        string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\"";
+        if (inputPhoneNumber.StartsWith("+38") == false)
+            inputPhoneNumber = inputPhoneNumber.Insert(0, "+38");
+        string phoneNumber = "\"phoneNumber\":\"" + inputPhoneNumber + "\"";
         var body = @"{" + "\n" + phoneNumber + "\n" +
 @"}";
         StartCoroutine(POST("http://18.117.102.247:5000/api/auth/phone/send", body, ShowPinCodeField, null));
@@ -53,14 +55,13 @@ public class AuthMenu : MenuItem<AuthMenu>
         phoneBlock.SetActive(false);
         sendCodeBtn.gameObject.SetActive(false);
         pincodeBlock.SetActive(true);
-        #region AutoSavingCode
-            var code = codeResponse.SMSCode.ToString();
-            for (int i = 0; i < pinFields.Length; i++) {
-                var pin = pinFields[i];
-                pin.text = code[i].ToString();
-            }
-            SendEnteredCode();
-        #endregion
+        //Auto filling code
+        var code = codeResponse.SMSCode.ToString();
+        for (int i = 0; i < pinFields.Length; i++) {
+            var pin = pinFields[i];
+            pin.text = code[i].ToString();
+        }
+        SendEnteredCode();
         //SelectFirstPin();
     }
     public void SelectFirstPin() => pinFields[0].Select();
@@ -85,8 +86,7 @@ public class AuthMenu : MenuItem<AuthMenu>
         if(responseCode == 200) {
             var response = JsonUtility.FromJson<CodeCheckResponse>(json);
             if (response.newUser) {
-                AccountMenu.accessToken = response.accessToken;
-                RegisterMenu.Show();
+                RegisterMenu.ShowRegisterMenu(response.accessToken);
             } else {
                 Close();
                 SearchMenu.Show();

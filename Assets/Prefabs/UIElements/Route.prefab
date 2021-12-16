@@ -1369,6 +1369,7 @@ MonoBehaviour:
   expandBtn: {fileID: 7997464742433660548}
   collapseIcon: {fileID: 8920728240448759079}
   expandIcon: {fileID: 627516524040483601}
+  detailInfoPrefab: {fileID: 7460286262568704595, guid: 04b699bdffb065047816a1139306d82e, type: 3}
   vanClassBtn: {fileID: 8481851869302589681, guid: 127b7122d0a1be343955643ba4aec99c, type: 3}
 --- !u!1 &6651135295135940494
 GameObject:

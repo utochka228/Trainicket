@@ -6,6 +6,20 @@ using UnityEngine;
 public class LanguageChanger : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown language;
+    private void Start() {
+        var currLanguage = LocalizationManager.instance.curr_language;
+        switch (currLanguage) {
+            case "localizedText_en":
+                language.value = 0;
+                break;
+            case "localizedText_ua":
+                language.value = 1;
+                break;
+            case "localizedText_ru":
+                language.value = 2;
+                break;
+        }
+    }
     public void ChangeLocalization() {
         switch (language.value) {
             case 0:

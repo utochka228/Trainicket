@@ -21,6 +21,11 @@ public class RegisterMenu : MenuItem<RegisterMenu>
 
     public TMP_Dropdown privilege;
     public TMP_InputField studentNumber;
+    string accessToken;
+    public static void ShowRegisterMenu(string accessToken) {
+        Show();
+        i.accessToken = accessToken;
+    }
     public void SendRegisteredValues() {
         var body = "";
 
@@ -37,19 +42,15 @@ public class RegisterMenu : MenuItem<RegisterMenu>
             var mask = new Regex(@",""privilege"".*?(?=})}");
             body = mask.Replace(body, "");
         }
-        string headerValue = "Bearer " + AccountMenu.accessToken;
+        string headerValue = "Bearer " + accessToken;
         Debug.Log("VALUE:" + headerValue);
-        HeaderRequest[] headers = new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + AccountMenu.accessToken) };
+        HeaderRequest[] headers = new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + accessToken) };
         StartCoroutine(POST("http://18.117.102.247:5000/api/user/register", body, GetResponse, headers));
     }
     void GetResponse(string json, long responseCode) {
-        if(responseCode == 200) {
-            var response = JsonUtility.FromJson<CodeCheckResponse>(json);
-            if (response.success) {
-                SaveToken(response.accessToken);
-                SearchMenu.Show();
-            }
-        }
+        var response = JsonUtility.FromJson<CodeCheckResponse>(json);
+        SaveToken(response.accessToken);
+        SearchMenu.Show();
     }
     DateTime childDate;
     public DateTime ChildDate {
@@ -64,6 +65,7 @@ public class RegisterMenu : MenuItem<RegisterMenu>
     public void ShowCalendar() => CalendarMenu.ShowCalendar((selectedDate)=> ChildDate = selectedDate, true);
 
     void SaveToken(string token) {
+        AccountMenu.accessToken = token;
         PlayerPrefs.SetString("userToken", token);
     }
     public void OnPrivilegeChanged(int i) {

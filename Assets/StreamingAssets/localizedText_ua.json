@@ -39,6 +39,142 @@
     {
       "key": "backbtn_lable",
       "value": "Назад"
+    },
+    {
+      "key": "date_lable",
+      "value": "Оберіть дату"
+    },
+    {
+      "key": "help_lable",
+      "value": "Потребуєте допомоги?"
+    },
+    {
+      "key": "foundtickets_lable",
+      "value": "Знайдені квитки"
+    },
+    {
+      "key": "fromwhere_lable",
+      "value": "Звідки/Куди"
+    },
+    {
+      "key": "date_table_lable",
+      "value": "Дата"
+    },
+    {
+      "key": "time_lable",
+      "value": "Час"
+    },
+    {
+      "key": "totaltime_lable",
+      "value": "Час в сумі"
+    },
+    {
+      "key": "details_lable",
+      "value": "Деталі"
+    },
+    {
+      "key": "traininfo_lable",
+      "value": "Інформація про потяг"
+    },
+    {
+      "key": "vantype_lable",
+      "value": "Тип вагону"
+    },
+    {
+      "key": "filltickets_lable",
+      "value": "Заповніть квитки"
+    },
+    {
+      "key": "fillRegistered_lable",
+      "value": "Заповнити квиток на базі зареєстрованих даних"
+    },
+    {
+      "key": "bedclothes_lable",
+      "value": "Білизна"
+    },
+    {
+      "key": "drinks_lable",
+      "value": "Напої"
+    },
+    {
+      "key": "infopayments_lable",
+      "value": "Введіть інформацію про вашу банківську картку"
+    },
+    {
+      "key": "successpaid_lable",
+      "value": "Операція успішна"
+    },
+    {
+      "key": "userTickets_lable",
+      "value": "Квитки користувача"
+    },
+    {
+      "key": "active_lable",
+      "value": "Активні"
+    },
+    {
+      "key": "History_lable",
+      "value": "Історія"
+    },
+    {
+      "key": "search_lable",
+      "value": "Пошук"
+    },
+    {
+      "key": "student_lable",
+      "value": "Студентський"
+    },
+    {
+      "key": "additional_lable",
+      "value": "Додатково"
+    },
+    {
+      "key": "next_lable",
+      "value": "Далі"
+    },
+    {
+      "key": "apply_lable",
+      "value": "Застосувати"
+    },
+    {
+      "key": "waiting_lable",
+      "value": "Зачекайте, будь ласка.."
+    },
+    {
+      "key": "pay_lable",
+      "value": "Оплатити квитки.."
+    },
+    {
+      "key": "birthday_lable",
+      "value": "День народження.."
+    },
+    {
+      "key": "fieldsimportant_lable",
+      "value": "Всі поля важливі.."
+    },
+    {
+      "key": "from_lable",
+      "value": "Звідки"
+    },
+    {
+      "key": "where_lable",
+      "value": "Куди"
+    },
+    {
+      "key": "authnotific_lable",
+      "value": "Показувати знову меню реєстрації?"
+    },
+    {
+      "key": "authnotifdesc_lable",
+      "value": "Ви завжди можете ввімкнути цю можливість в налаштуваннях"
+    },
+    {
+      "key": "yes_lable",
+      "value": "Так"
+    },
+    {
+      "key": "no_lable",
+      "value": "Ні"
     }
   ]
 }

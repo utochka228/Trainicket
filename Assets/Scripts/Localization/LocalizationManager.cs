@@ -112,12 +112,9 @@ public class LocalizationManager : MonoBehaviour
                 curr_language = "localizedText_en";
                 break;
             case 1:
-                curr_language = "localizedText_it";
-                break;
-            case 2:
                 curr_language = "localizedText_ua";
                 break;
-            case 3:
+            case 2:
                 curr_language = "localizedText_ru";
                 break;
         }
@@ -129,14 +126,11 @@ public class LocalizationManager : MonoBehaviour
             case "English":
                 PlayerPrefs.SetInt("language", 0);
                 break;
-            case "Italian":
+            case "Ukrainian":
                 PlayerPrefs.SetInt("language", 1);
                 break;
-            case "Ukrainian":
-                PlayerPrefs.SetInt("language", 2);
-                break;
             case "Russian":
-                PlayerPrefs.SetInt("language", 3);
+                PlayerPrefs.SetInt("language", 2);
                 break;
         }
     }

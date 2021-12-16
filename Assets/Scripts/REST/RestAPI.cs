@@ -21,7 +21,7 @@ public class RestAPI : MonoBehaviour
         LoadingMenu.Hide();
         if (request.error != null) {
             Debug.LogError("Error: " + request.error);
-            Message.ShowNativePopUp("Error", request.error);
+            Debug.LogError("Response body: " + request.downloadHandler.text);
         } else {
             Debug.Log("All OK");
             Debug.Log("Status Code: " + request.responseCode);
@@ -46,7 +46,7 @@ public class RestAPI : MonoBehaviour
 
         if (request.error != null) {
             Debug.LogError("Error: " + request.error);
-            Message.ShowNativePopUp("Error", request.error);
+            Debug.LogError("Response body: " + request.downloadHandler.text);
         } else {
             Debug.Log("All OK");
             Debug.Log("Status Code: " + request.responseCode);

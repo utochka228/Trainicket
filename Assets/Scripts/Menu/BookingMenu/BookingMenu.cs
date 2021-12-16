@@ -13,8 +13,10 @@ public class Ticket
 {
     public bool ready;
     public BookInfo bookInfo;
-    public Ticket(BookInfo bookInfo) {
+    public UserBookingData userBookingData;
+    public Ticket(BookInfo bookInfo, UserBookingData userBookingData) {
         this.bookInfo = bookInfo;
+        this.userBookingData = userBookingData;
     }
 }
 public class BookingMenu : MenuItem<BookingMenu>
@@ -46,7 +48,7 @@ public class BookingMenu : MenuItem<BookingMenu>
             int index = k;
             tab.GetComponent<Button>().onClick.AddListener(() => i.OpenTicket(index));
             tab.GetComponentInChildren<TextMeshProUGUI>().text = (k + 1).ToString();
-            i.tickets.Add(new Ticket(new BookInfo()));
+            i.tickets.Add(new Ticket(new BookInfo(), selectedTickets[k]));
         }
         i.OpenTicket(0);
     }
@@ -56,17 +58,25 @@ public class BookingMenu : MenuItem<BookingMenu>
     void OpenTicket(int index) {
         var ticket = tickets[index];
         currentTicket = ticket;
-        if (ticket.bookInfo.editted == false)
-            ResetAllValues();
         ticket.bookInfo.editted = true;
         currentTab = index;
+        foreach (Transform tab in horizontalLayout.transform) {
+            tab.Find("Selector").gameObject.SetActive(false);
+        }
+        notUpdateValues = true;
+        horizontalLayout.transform.GetChild(index).Find("Selector").gameObject.SetActive(true);
         fillAccountData.isOn = false;
-        UpdateValues();
+
+        //Update values
+        SetFilledValues();
+        bedclothes.isOn = currentTicket.bookInfo.additional.bedclothes;
+        drinks.isOn = currentTicket.bookInfo.additional.drinks;
+        notUpdateValues = false;
     }
     public void UpdateValues() {
         if (notUpdateValues)
             return;
-        var studentData = "BK" + studentNumber.text;
+        var studentData = studentNumber.text;
         var childData = lastSelectedDate.Date.ToString("yy.MM.dd");
         var priv = RegisterMenu.GetPrivilegeByIndex(privilege.value, childData, studentData);
         currentTicket.bookInfo.privilege = priv.type;
@@ -105,13 +115,11 @@ public class BookingMenu : MenuItem<BookingMenu>
     void ChangeTicketState(bool ready) {
         var currentTabBtn = horizontalLayout.transform.GetChild(currentTab).GetComponent<Button>();
         if (ready) {
-            var colors = currentTabBtn.colors;
-            colors.normalColor = Color.green;
-            currentTabBtn.colors = colors;
+            var image = currentTabBtn.image;
+            image.color = Color.green;
         } else {
-            var colors = currentTabBtn.colors;
-            colors.normalColor = Color.white;
-            currentTabBtn.colors = colors;
+            var image = currentTabBtn.image;
+            image.color = Color.white;
         }
         currentTicket.ready = ready;
     }
@@ -140,17 +148,22 @@ public class BookingMenu : MenuItem<BookingMenu>
                 return;
             }
         }
-        PaymentsMenu.ShowPayments(BookTickets());
+        BookTickets();
     }
-    BookResponse[] BookTickets() {
+    int ticketsResponded;
+    BookResponse[] bookResponses;
+    void BookTickets() {
         //Process userBookingData
-        BookResponse[] bookResponses = new BookResponse[tickets.Count];
-        UserBookingData[] userBookingData = new UserBookingData[tickets.Count];
-        for (int j = 0; j < userBookingData.Length; j++) {
-            var userData = userBookingData[j];
+        ticketsResponded = 0;
+        bookResponses = new BookResponse[tickets.Count];
+        for (int j = 0; j < tickets.Count; j++) {
             var ticket = tickets[j];
             BookData bookData = new BookData();
-            bookData.userBookingData = userData;
+            bookData.route = ticket.userBookingData.route;
+            bookData.from = ticket.userBookingData.from;
+            bookData.to = ticket.userBookingData.to;
+            bookData.van = ticket.userBookingData.van;
+            bookData.seat = ticket.userBookingData.seat;
             bookData.firstName = ticket.bookInfo.firstName;
             bookData.lastName = ticket.bookInfo.secondName;
             bookData.email = ticket.bookInfo.email;
@@ -169,14 +182,29 @@ public class BookingMenu : MenuItem<BookingMenu>
 
             var body = JsonUtility.ToJson(bookData);
 
-            if (ticket.bookInfo.privilege == "Full") {
+            if(services.Count == 0) {
+                var mask = new Regex(@",""services"".*?(?=])]");
+                body = mask.Replace(body, "");
+            }
+            if (ticket.bookInfo.privilege == "Full" || string.IsNullOrEmpty(ticket.bookInfo.privilege)) {
                 var mask = new Regex(@",""privilege"".*?(?=})}");
                 body = mask.Replace(body, "");
             }
+            int index = j;
+            HeaderRequest[] headers = null;
+            if (!string.IsNullOrEmpty(AccountMenu.accessToken))
+                headers = new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + AccountMenu.accessToken) };
             StartCoroutine(RestAPI.POST("http://18.117.102.247:5000/api/ticket/book", body,
-                (json, code) => bookResponses[j] = JsonUtility.FromJson<BookResponse>(json), null));
+                (json, code) => {
+                    bookResponses[index] = JsonUtility.FromJson<BookResponse>(json);
+                    ticketsResponded++;
+            }, headers));
         }
-        return bookResponses;
+        StartCoroutine(ShowPayments());
+    }
+    IEnumerator ShowPayments() {
+        yield return new WaitUntil(() => ticketsResponded == bookResponses.Length);
+        PaymentsMenu.ShowPayments(bookResponses);
     }
     bool notUpdateValues;
     public void FillRegisteredInfo(bool isOn) {
@@ -206,7 +234,7 @@ public class BookingMenu : MenuItem<BookingMenu>
         var registeredData = AccountMenu.RegisteredData;
         currentTicket.bookInfo.privilege = registeredData.privilege.type;
         currentTicket.bookInfo.studentNumber = registeredData.privilege.data;
-        currentTicket.bookInfo.childBirthday = registeredData.privilege.data;
+        currentTicket.bookInfo.childBirthday = DateTime.Parse(registeredData.privilege.data).ToString("yy.MM.dd");
         currentTicket.bookInfo.firstName = registeredData.firstName;
         currentTicket.bookInfo.secondName = registeredData.lastName;
         currentTicket.bookInfo.email = registeredData.email;
@@ -214,6 +242,7 @@ public class BookingMenu : MenuItem<BookingMenu>
         notUpdateValues = false;
     }
     public void ResetAllValues() {
+        notUpdateValues = true;
         privilege.value = 0;
         birthdayDate.text = "select date";
         birthdayObj.SetActive(false);
@@ -224,6 +253,7 @@ public class BookingMenu : MenuItem<BookingMenu>
         firstName.text = "";
         secondName.text = "";
         email.text = "";
+        notUpdateValues = false;
     }
 }
 

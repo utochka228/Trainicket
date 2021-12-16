@@ -73,6 +73,7 @@ public class TrainInfoMenu : MenuItem<TrainInfoMenu>
             userBookData.to = trainRoute.to._id;
             userBookData.van = selectedSeats[i].selectedSeat.van._id;
             userBookData.seat = selectedSeats[i].selectedSeat.van.seats[selectedSeats[i].selectedSeat.SeatNumber]._id;
+            userBookDatas[i] = userBookData;
         }
         BookingMenu.ShowBookingMenu(userBookDatas);
     }

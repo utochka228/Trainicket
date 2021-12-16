@@ -329,6 +329,7 @@ MonoBehaviour:
   bookingMenu: {fileID: 7996155668321113431, guid: 5a78fa42e977b6144bcff40648e48149, type: 3}
   accountMenu: {fileID: 3889633877059821290, guid: 8d4d8a6caad26a24da302d1139e55ca7, type: 3}
   paymentsMenu: {fileID: 1014012656983347119, guid: f22f51c6e7de2ac41813fe2d7e264514, type: 3}
+  userTicketsMenu: {fileID: 8658603931640762491, guid: a0a87606b885f3642bd3fd311155d199, type: 3}
 --- !u!114 &1365513354
 MonoBehaviour:
   m_ObjectHideFlags: 0

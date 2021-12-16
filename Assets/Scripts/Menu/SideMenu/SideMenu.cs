@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TrainicketJSONStorage.GettingTickets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,10 +44,28 @@ public class SideMenu : MenuItem<SideMenu>
         }));
         StartCoroutine(Utils.Lerp(startAlpha, endAlpha, duration, (lerpAlpha, end) => darkRegion.ChangeAlpha(lerpAlpha)));
     }
-    
+    public override void OnBackPressed() {
+        HideMenu();
+    }
     public void HideMenu() => ShowMenu(true);
 
     public void ShowTicketsMenu() {
-
+        if (UserTicketsMenu.i != null && UserTicketsMenu.i.gameObject.activeSelf) {
+            Close();
+            return;
+        }
+        if (string.IsNullOrEmpty(AccountMenu.accessToken)) {
+            Debug.LogError("Unregistered user - You are not registered!" +
+                "Please, register in system for watching your tickets.");
+            return;
+        }
+        else {
+            string url = "http://18.117.102.247:5000/api/user/tickets";
+            StartCoroutine(RestAPI.GET(url, (json, code) => {
+                var ticketsResponse = JsonUtility.FromJson<UserTicketsResponse>(json);
+                Close();
+                UserTicketsMenu.ShowTicketsMenu(ticketsResponse);
+            }, new HeaderRequest[1] { new HeaderRequest("Authorization", "Bearer " + AccountMenu.accessToken) }, true));
+        }
     }
 }

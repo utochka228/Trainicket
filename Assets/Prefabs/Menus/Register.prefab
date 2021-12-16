@@ -227,6 +227,10 @@ MonoBehaviour:
   lable: {fileID: 6683933655938425244}
   parentToReplacing: {fileID: 0}
   removeOnPressingBack: 0
+  siblingIndexImportant: 0
+  OnRemoveFocusZoneActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &859835747569490251
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +664,8 @@ GameObject:
   - component: {fileID: 1461123734017202703}
   - component: {fileID: 7058928807441387701}
   - component: {fileID: 2132330831735100039}
+  - component: {fileID: 1343291885512436012}
+  - component: {fileID: 6546972599221223955}
   m_Layer: 5
   m_Name: WarningLable
   m_TagString: Untagged
@@ -783,6 +789,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1343291885512436012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063184222423910333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
+--- !u!114 &6546972599221223955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063184222423910333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd3e4cffc9234aca8d511baf0582d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: fieldsimportant_lable
+  text: {fileID: 2132330831735100039}
 --- !u!1 &2669236501740155661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,6 +2358,10 @@ MonoBehaviour:
   lable: {fileID: 4170374416433316739}
   parentToReplacing: {fileID: 0}
   removeOnPressingBack: 0
+  siblingIndexImportant: 0
+  OnRemoveFocusZoneActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6649925333849761958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2974,6 +3012,10 @@ MonoBehaviour:
   lable: {fileID: 1141857288114896396}
   parentToReplacing: {fileID: 0}
   removeOnPressingBack: 0
+  siblingIndexImportant: 0
+  OnRemoveFocusZoneActions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &733005477381689018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3072,6 +3114,10 @@ PrefabInstance:
     - target: {fileID: 5991526625033253981, guid: 660e2f906be30c14ab737418894291e4, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337164908251768338, guid: 660e2f906be30c14ab737418894291e4, type: 3}
+      propertyPath: localizationKey
+      value: student_lable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 660e2f906be30c14ab737418894291e4, type: 3}

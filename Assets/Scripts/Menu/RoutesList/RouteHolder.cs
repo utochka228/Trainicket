@@ -19,9 +19,10 @@ public class RouteHolder : MonoBehaviour
     [SerializeField] TextMeshProUGUI timeWhere;
     [SerializeField] TextMeshProUGUI totalTime;
 
-    [SerializeField] Button expandBtn;
+    public Button expandBtn;
     [SerializeField] GameObject collapseIcon;
     [SerializeField] GameObject expandIcon;
+    public RectTransform detailInfoPrefab;
 
     [SerializeField] VanTypeButton vanClassBtn;
     RectTransform detailInfo;
@@ -74,7 +75,7 @@ public class RouteHolder : MonoBehaviour
     }
 
     void CreateAndFill() {
-        detailInfo = Instantiate(RoutesListMenu.i.detailInfoPrefab, RoutesListMenu.i.wayHolder).GetComponent<RectTransform>();
+        detailInfo = Instantiate(detailInfoPrefab, transform.parent).GetComponent<RectTransform>();
         detailInfo.transform.SetSiblingIndex(transform.GetSiblingIndex() + 1);
         //Calculate maxHeight!
         float oneButtonHeight = vanClassBtn.GetComponent<RectTransform>().sizeDelta.y;

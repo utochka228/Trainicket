@@ -6,7 +6,6 @@ using UnityEngine;
 public class RoutesListMenu : MenuItem<RoutesListMenu>
 {
     public RouteHolder routePrefab;
-    public RectTransform detailInfoPrefab;
     public Transform wayHolder;
     // Start is called before the first frame update
     void OnEnable()

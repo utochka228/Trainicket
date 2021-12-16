@@ -22,7 +22,10 @@ public class UIMenuManager : MonoBehaviour
     public BookingMenu bookingMenu;
     public AccountMenu accountMenu;
     public PaymentsMenu paymentsMenu;
-
+    public UserTicketsMenu userTicketsMenu;
+    private void OnApplicationQuit() {
+        LocalizationManager.instance.SaveCurrentLanguage();
+    }
     List<Menu> visualHelpers = new List<Menu>();
     void Awake()
     {
@@ -178,7 +181,7 @@ public class UIMenuManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
             PlayerPrefs.DeleteKey("userToken");
             PlayerPrefs.DeleteKey("showAuth");
         }

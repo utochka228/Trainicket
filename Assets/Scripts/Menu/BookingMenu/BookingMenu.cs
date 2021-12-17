@@ -234,7 +234,7 @@ public class BookingMenu : MenuItem<BookingMenu>
         var registeredData = AccountMenu.RegisteredData;
         currentTicket.bookInfo.privilege = registeredData.privilege.type;
         currentTicket.bookInfo.studentNumber = registeredData.privilege.data;
-        currentTicket.bookInfo.childBirthday = DateTime.Parse(registeredData.privilege.data).ToString("yy.MM.dd");
+        currentTicket.bookInfo.childBirthday = registeredData.privilege.data;
         currentTicket.bookInfo.firstName = registeredData.firstName;
         currentTicket.bookInfo.secondName = registeredData.lastName;
         currentTicket.bookInfo.email = registeredData.email;

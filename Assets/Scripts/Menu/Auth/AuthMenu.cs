@@ -67,7 +67,7 @@ public class AuthMenu : MenuItem<AuthMenu>
     public void SelectFirstPin() => pinFields[0].Select();
     
     public void SendEnteredCode() {
-        string phoneNumber = "\"phoneNumber\":\"" + phoneField.text + "\",";
+        string phoneNumber = "\"phoneNumber\":\"" + inputPhoneNumber + "\",";
         string pinCode = "";
         foreach (var pin in pinFields) {
             pinCode += pin.text;
